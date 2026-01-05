@@ -1,7 +1,6 @@
 {
   "tank" : {
-    "MMBT" : [
-      {
+    "MMBT" : {
       "hp" : 50,
       "org" : 20,
       "attack" : 75,
@@ -12,10 +11,8 @@
       "AA" : 0 , 
       "recon" : 0,
       "entrenchment" : 0 
-      }
-    ],
-    "CWMBT" :[
-      {
+      },
+    "CWMBT" :{
       "hp" : 50,
       "org" : 20,
       "attack" : 60,
@@ -26,10 +23,8 @@
       "AA" : 0 , 
       "recon" : 0,
       "entrenchment" : 0 
-      }
-    ],
-    "WW2T" :[
-      {
+      },
+    "WW2T" :{
       "hp" : 40,
       "org" : 15,
       "attack" : 50,
@@ -41,6 +36,5 @@
       "recon" : 0,
       "entrenchment" : 67
       }
-    ]
   }
 }
