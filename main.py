@@ -15,10 +15,17 @@ class Battalion:
         self.info = loadjson (self.path)
 
     def Bcheck (self ,stat):
-        for stat , details  in self.info ["tank"].tank : 
-            print (f" {type} : {details ['hp']} ") #ask for help with json and oop tmr gng 
+        print("for", stat ,":")
+        for x in self.info ["battalion"]:
+            print (f" Unit:  {x['unit']} ")
+            for y in x ["list"]:
+                print (f"  { y["era"]["type"] } has { y["era"][stat]} {stat} ")
 
 
 battalion = Battalion()
-battalion.Bcheck("hp")
+while True:
+  stat = input ("\nstat? ")
+  if stat == "stop":
+      False
+  battalion.Bcheck(stat)
     

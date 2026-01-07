@@ -1,40 +1,317 @@
 {
-  "tank" : {
-    "MMBT" : {
-      "hp" : 50,
-      "org" : 20,
-      "attack" : 75,
-      "defense" : 100,
-      "breakthrough" : 100,
-      "piercing" : 150,
-      "armour" : 125,
-      "AA" : 0 , 
-      "recon" : 0,
-      "entrenchment" : 0 
+  "battalion" : [
+    {
+    "unit" : "tank",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
       },
-    "CWMBT" :{
-      "hp" : 50,
-      "org" : 20,
-      "attack" : 60,
-      "defense" : 80,
-      "breakthrough" : 80,
-      "piercing" : 100,
-      "armour" : 90,
-      "AA" : 0 , 
-      "recon" : 0,
-      "entrenchment" : 0 
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
       },
-    "WW2T" :{
-      "hp" : 40,
-      "org" : 15,
-      "attack" : 50,
-      "defense" : 60,
-      "breakthrough" : 70,
-      "piercing" : 80,
-      "armour" : 80,
-      "AA" : 0 , 
-      "recon" : 0,
-      "entrenchment" : 67
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
       }
-  }
+    ]
+  },
+
+
+  
+  {
+    "unit" : "IFV" , 
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
+      }
+    ]
+    } ,
+
+
+
+    {
+    "unit" : "infantry" , 
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
+      }
+    ]
+    },
+
+
+
+    {
+    "unit" : "artillery" , 
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
+      }
+    ]
+    } ,
+
+
+    {
+    "unit" : "AA" , 
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
+      }
+    ]
+    } ,
+
+
+    {
+    "unit" : "AT" , 
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 75,
+        "defense" : 100,
+        "breakthrough" : 100,
+        "pierce" : 150,
+        "armour" : 125,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+        "hp" : 50,
+        "org" : 20,
+        "attack" : 60,
+        "defense" : 80,
+        "breakthrough" : 80,
+        "pierce" : 100,
+        "armour" : 90,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 0 
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "hp" : 40,
+        "org" : 15,
+        "attack" : 50,
+        "defense" : 60,
+        "breakthrough" : 70,
+        "pierce" : 80,
+        "armour" : 80,
+        "AA" : 0 , 
+        "recon" : 0,
+        "entrenchment" : 67
+        }
+      }
+    ]
+    } 
+  ]
 }
