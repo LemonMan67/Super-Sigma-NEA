@@ -7,7 +7,7 @@ def loadjson (filepath):
 
 def writejson (filepath , update) :
     with open (filepath , "w") as f:
-        json.dump(f , update , indent=4 )
+        json.dump(f , update , indent=5 )
 
 class Battalion:
     def __init__(self, filepath = "battalion.json"):
