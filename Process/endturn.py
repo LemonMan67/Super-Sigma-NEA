@@ -1,7 +1,9 @@
+from . import Json
+from pathlib import Path
 
 def buh (counter):
+    data = Json.loadjson (Path ("./json/save.json"))
+    counter = data ["counter"]
     counter += 1
-    with open ("./save/turncount.txt" , "w") as f:
-        f.write (str(counter))
-        f.close()
-    return counter
+    Json.writejson (Path ("./json/save.json") , counter , 2)
+    return data ["counter"]
