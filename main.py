@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import time
 import os
+from Process import endturn
 
 def loadjson (filepath):
     with open (filepath , "r" ) as f:
@@ -34,20 +35,36 @@ battalion = Battalion()
 
 repeatmenu = 1
 menu = "0"
+with open ("./save/turncount.txt" , "r") as f:
+   counter = f.read()
+   counter = int(counter)
+   f.close()
+
 while repeatmenu == 1:
    if menu == "0":
      os.system('cls' if os.name == 'nt' else 'clear')
      print("1 : battalion interactions")
-     print("2 : exit")
+     print("2 : end turn       current turn = ", counter) 
+     print("3 : exit")
      menu = input ("\nselect menu: ")
 
    elif menu == "1":
       os.system('cls' if os.name == 'nt' else 'clear')
       battalion.Bcheck()
       menu = "0"
-
+   
    elif menu == "2":
+      os.system('cls' if os.name == 'nt' else 'clear')
+      print("ending turn...")
+      counter = endturn.buh(counter)
+      time.sleep(2)
+      menu = "0"  
+
+   elif menu == "3":
       print("exiting and saving...")
+      with open ("turncount.txt" , "w") as f:
+         f.write (counter)
+         f.close()
       time.sleep(3)
       repeatmenu = "0"
     
@@ -55,6 +72,8 @@ while repeatmenu == 1:
      print("invalid menu")
      time.sleep(2)
      menu = "0"
+
+ 
     
       
         
