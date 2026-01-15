@@ -5,6 +5,6 @@ def loadjson (filepath):
     with open (filepath , "r" ) as f:
         return json.load (f)
 
-def writejson (filepath , update , x ) :
+def writejson (update , filepath , x ) :
     with open (filepath , "w") as f:
-        json.dump(f , update , indent= x  )
+        json.dump(update , f , indent = 2)

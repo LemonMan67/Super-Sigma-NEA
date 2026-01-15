@@ -50,7 +50,7 @@ while repeatmenu == 1:
       print("2 : end turn       current turn = ", counter) 
       print("3 : exit")
       menu = input ("\nselect menu: ")
-
+      
    elif menu == "1":
       os.system('cls' if os.name == 'nt' else 'clear')
       battalion.Bcheck()
