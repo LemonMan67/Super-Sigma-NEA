@@ -5,8 +5,6 @@ from Process import endturn
 from Process import Json
 
 
-#gng we need to figure out how to write back to json properly
-
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
         self.path = Path (filepath)  
@@ -43,6 +41,7 @@ load.saveload()
 repeatmenu = 1
 menu = "0"
 
+
 while repeatmenu == 1:
    if menu == "0":
       os.system('cls' if os.name == 'nt' else 'clear')
@@ -65,7 +64,7 @@ while repeatmenu == 1:
 
    elif menu == "3":
       print("exiting and saving...")
-
+      # add save function here???
       time.sleep(3)
       repeatmenu = "0"
     
