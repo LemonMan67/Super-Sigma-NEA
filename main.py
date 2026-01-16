@@ -3,6 +3,7 @@ import time
 import os
 from Process import endturn
 from Process import Json
+from Process import globalise
 
 #change values in battlalion json file
 
@@ -29,10 +30,9 @@ class Load:
       self.path = Path (filepath)
       self.data = Json.loadjson (self.path)
 
-   def saveload (self) :
+   def saveload (self ,) :
       global counter
-      counter = self.data ["counter"]
-      #find a weiii to perform this function in an another file for tidy reasons
+      counter =   self.data ["counter"]
       
 
 load = Load()
@@ -48,7 +48,7 @@ while repeatmenu == 1:
    if menu == "0":
       os.system('cls' if os.name == 'nt' else 'clear')
       print("1 : battalion interactions")
-      print("2 : end turn       current turn = ", counter) 
+      print("2 : end turn       current turn = ", load.counter) 
       print("3 : exit")
       menu = input ("\nselect menu: ")
       
