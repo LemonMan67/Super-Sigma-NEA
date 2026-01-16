@@ -4,13 +4,14 @@ import os
 from Process import endturn
 from Process import Json
 
+#change values in battlalion json file
 
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
         self.path = Path (filepath)  
         self.info = Json.loadjson (self.path)
 
-    def Bcheck (self):
+    def Statcheck (self):
         repeat = 1
         while repeat == 1:
           stat = input ("\nstat? ")
@@ -31,6 +32,7 @@ class Load:
    def saveload (self) :
       global counter
       counter = self.data ["counter"]
+      #find a weiii to perform this function in an another file for tidy reasons
       
 
 load = Load()
@@ -52,8 +54,9 @@ while repeatmenu == 1:
       
    elif menu == "1":
       os.system('cls' if os.name == 'nt' else 'clear')
-      battalion.Bcheck()
+      battalion.Statcheck()
       menu = "0"
+      #add secondary menu for battalion interactions here
    
    elif menu == "2":
       os.system('cls' if os.name == 'nt' else 'clear')
