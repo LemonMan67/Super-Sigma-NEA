@@ -14,15 +14,22 @@ class Battalion:
     def Statcheck (self):
         repeat = 1
         while repeat == 1:
-          stat = input ("\nstat? ")
+          os.system('cls' if os.name == 'nt' else 'clear')
+          print("\nwhich stat do you want to check? (hp, attack, org, defense, breakthrough, pierce, armour, AA, recon, entrenchment) or type stop to exit: ")
+          stat = input ("\n")
+          os.system('cls' if os.name == 'nt' else 'clear')
           if stat == "stop":
-            repeat = 0
-          else:
+            repeat = 0 
+          elif stat == "hp" or stat == "attack" or stat == "org" or stat == "defense" or stat == "breakthrough" or stat == "pierce" or stat == "armour" or stat == "AA" or stat == "recon" or stat == "entrenchment":
             print("for", stat ,":")
             for x in self.info ["battalion"]:
               print (f" Unit:  {x['unit']} ")
               for y in x ["list"]:
                 print (f"  { y["era"]["type"] } has { y["era"][stat]} {stat} ")
+            stat = input ("\nwhich stat do you want to check? (hp, attack, org, defense, breakthrough, pierce, armour, AA, recon, entrenchment) or type stop to exit: ")
+          else:
+            print("invalid stat")
+            time. sleep (2)
 
 class Load:
    def __init__(self , filepath = "./json/save.json"):
@@ -62,6 +69,7 @@ while repeatmenu == 1:
          if submenu == "1":
             os.system('cls' if os.name == 'nt' else 'clear')
             battalion.Statcheck()
+            menu = input ("\nselect menu: ")
          elif submenu == "2":
             menu = "0"
             break
