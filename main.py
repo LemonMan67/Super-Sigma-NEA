@@ -46,17 +46,29 @@ menu = "0"
 while repeatmenu == 1:
    if menu == "0":
       os.system('cls' if os.name == 'nt' else 'clear')
-      print("1 : battalion interactions")
+      print("main menu:")
+      print("\n1 : battalion interactions")
       print("2 : end turn       current turn = ", counter) 
       print("3 : exit")
       menu = input ("\nselect menu: ")
       
    elif menu == "1":
-      os.system('cls' if os.name == 'nt' else 'clear')
-      battalion.Statcheck()
-      menu = "0"
-      #add secondary menu for battalion interactions here
-   
+      while True:
+         os.system('cls' if os.name == 'nt' else 'clear')
+         print("battalion interactions:")
+         print("\n1 : stat check")
+         print("2 : return")
+         submenu = input ("\nselect menu: ")
+         if submenu == "1":
+            os.system('cls' if os.name == 'nt' else 'clear')
+            battalion.Statcheck()
+         elif submenu == "2":
+            menu = "0"
+            break
+         else:
+            print("invalid menu")
+            time.sleep(2)
+            
    elif menu == "2":
       os.system('cls' if os.name == 'nt' else 'clear')
       print("ending turn...")

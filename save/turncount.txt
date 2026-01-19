@@ -1,1 +1,3 @@
-3
+      battalion.Statcheck()
+      menu = "0"
+      #add secondary menu for battalion interactions here
