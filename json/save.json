@@ -1,4 +1,13 @@
 {
   "counter": 5,
-  "curry": 5
+
+
+  "tankera": "CW",
+  "IFVera": "WW2",
+  "Infera": "CW",
+  "artera": "WW2",
+  "AAera": "WW2",
+  "ATera": "CW"
+
+
 }
