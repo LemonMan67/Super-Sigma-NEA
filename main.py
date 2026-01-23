@@ -19,7 +19,7 @@ class Battalion:
         self.AAera = self.save ["AAera"]
         self.ATera = self.save ["ATera"]
         self.sortlist = [self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera]
-        self.passthrough = -1
+        self.passthrough = int(-1)
 
     def Statcheck (self):
         repeat = 1
@@ -37,9 +37,10 @@ class Battalion:
               print (f" Unit:  {x['unit']} ")
               for y in x ["list"]:
                 check = y["era"]["type"]
-                print ([self.sortlist[self.passthrough]])
-                if check == [self.sortlist[self.passthrough]]:    #make this check pass, correct value passed, but the value has extra characters making it not equal
-                  print (f"  { y["era"]["type"] } has { y["era"][stat]} {stat} ")
+                check = str(check)
+                listcheck = str(self.sortlist[self.passthrough])
+                if check == listcheck:    #make this check pass, correct value passed, but the value has extra characters making it not equal
+                  print (f"  has { y["era"][stat]} {stat}   ( {y["era"]["type"]} )")
             stat = input ("\nwhich stat do you want to check? (hp, attack, org, defense, breakthrough, pierce, armour, AA, recon, entrenchment) or type stop to exit: ")
           else:
             print("invalid stat")
