@@ -1,0 +1,47 @@
+{
+    "type": [
+        {
+        "details": {
+          "building" : "coal mine",
+          "output": {
+              "coal": 5
+          },
+          "input": {
+            "false": false
+
+          },
+          "cost" : "10"
+        }
+        },
+
+
+        {
+        "details": {
+          "building" : "iron mine",
+          "output": {
+              "iron": 3
+          },
+          "input": {
+            "false": false
+
+          },
+          "cost" : "10"
+        }
+        },
+
+
+        {
+        "details": {
+          "building" : "iron foundry",
+          "output": {
+               "iron": 1
+            },
+          "input": {
+            "coal": 1,
+            "raw iron": 1
+            },
+          "cost" : "20"
+            }
+        }
+    ]
+}
