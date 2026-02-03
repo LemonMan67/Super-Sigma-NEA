@@ -1,6 +1,6 @@
 {
   "counter": 0,
-  "money": 40,
+  "money": 80,
   "iron": 0,
   "raw iron": 0,
   "coal": 0,
@@ -10,7 +10,7 @@
   "artera": "WW2",
   "AAera": "WW2",
   "ATera": "WW2",
-  "iron mine": 5,
+  "iron mine": 3,
   "iron foundry": 1,
   "coal mine": 1
 }

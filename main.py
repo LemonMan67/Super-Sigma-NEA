@@ -79,7 +79,7 @@ class Load:
       self.data = Json.loadjson (self.path)
       self.counter = self.data ["counter"]
       self.money = self.data ["money"]
-      self.raw_iron = self.data ["raw iron"]
+      self.rawiron = self.data ["raw iron"]
       self.iron = self.data ["iron"]         # make sure i figure out how to alter the building values with this new approah
       self.coal = self.data ["coal"]
       self.ironmine = self.data ["iron mine"]
@@ -138,7 +138,7 @@ while repeatmenu == 1:
       os.system('cls' if os.name == 'nt' else 'clear')
       print("ending turn...")
       load.counter = endturn.buh(load.counter)
-      endturn.rescource (load.iron, load.raw_iron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
+      endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
       time.sleep(2)
       menu = "0"  
 
