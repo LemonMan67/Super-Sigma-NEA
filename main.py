@@ -56,23 +56,28 @@ class Building:
       self.money = load.money
 
    def buybuilding (self , buildingname ) :
-      for x in self.data ["type"]:
-         if x ["details"]["building"] == buildingname :
-           if self.money >=  int ( x ["details"]["cost"]):
-              self.money -= int ( x ["details"]["cost"])
-              load.money = self.money
-              amount = self.save [buildingname]
-              amount += 1         #make way to print the correct value in the building menu
-              self.save [buildingname] = amount
-              self.save ["money"] = self.money
-              Json.writejson (self.save, self.savepath , 2)
+      if buildingname != "iron mine" or buildingname != "iron foundry" or buildingname != "coal mine":
+       for x in self.data ["type"]:
+          if x ["details"]["building"] == buildingname :
+             if self.money >=  int ( x ["details"]["cost"]):
+               self.money -= int ( x ["details"]["cost"])
+               load.money = self.money
+               amount = self.save [buildingname]
+               amount += 1         #make way to print the correct value in the building menu
+               self.save [buildingname] = amount
+               self.save ["money"] = self.money
+               Json.writejson (self.save, self.savepath , 2)
+               if buildingname == "iron mine":        
+                     load.ironmine += 1
+               elif buildingname == "iron foundry":         #must add more lines here to actually increase the building count for a specific building
+                      load.ironfoundry += 1
+               elif buildingname == "coal mine":
+                      load.coalmine += 1
+      else:
+        print("invalid building name")
+        time.sleep(2)
 
-
-
-
-
-
-
+               
 class Load:
    def __init__(self , filepath = "./json/save.json"):
       self.path = Path (filepath)
@@ -128,7 +133,7 @@ while repeatmenu == 1:
       print(load.ironmine, " iron mines owned")
       print(load.ironfoundry, " iron foundries owned")
       print(load.coalmine, " coal mines owned")
-      buy = input ("\nbuilding name: ")
+      buy = input ("\nbuilding name: ")        #completely remake this menu
       building.buybuilding (buy)
       menu = "0"
 

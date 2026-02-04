@@ -1,16 +1,16 @@
 {
-  "counter": 0,
-  "money": 80,
-  "iron": 0,
-  "raw iron": 0,
-  "coal": 0,
+  "counter": 2,
+  "money": 100,
+  "iron": 1,
+  "raw iron": 2,
+  "coal": 5,
   "tankera": "WW2",
   "IFVera": "WW2",
   "Infera": "WW2",
   "artera": "WW2",
   "AAera": "WW2",
   "ATera": "WW2",
-  "iron mine": 3,
+  "iron mine": 1,
   "iron foundry": 1,
   "coal mine": 1
 }

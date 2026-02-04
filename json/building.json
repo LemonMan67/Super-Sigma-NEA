@@ -19,7 +19,7 @@
         "details": {
           "building" : "iron mine",
           "output": {
-              "iron": 3
+              "raw iron": 3
           },
           "input": {
             "false": false

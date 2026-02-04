@@ -28,4 +28,5 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     data ["raw iron"] = rawiron
     data ["coal"] = coal
     Json.writejson (data, Path ("./json/save.json") , 2)
+    return iron, rawiron, coal
 
