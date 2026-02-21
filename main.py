@@ -85,12 +85,11 @@ class Load:
       self.counter = self.data ["counter"]
       self.money = self.data ["money"]
       self.rawiron = self.data ["raw iron"]
-      self.iron = self.data ["iron"]         # make sure i figure out how to alter the building values with this new approah
+      self.iron = self.data ["iron"]         # the difference in rescources is correctly figured, but the values arent properly updated and the amount owned is seemingly the amount of change every turn, this is likely to be an issue with how values are loaded, thus a possible redesign of how i do this may be in order
       self.coal = self.data ["coal"]
       self.ironmine = self.data ["iron mine"]
       self.ironfoundry = self.data ["iron foundry"]
       self.coalmine = self.data ["coal mine"]
-      
 
 load = Load()
 battalion = Battalion()
@@ -141,9 +140,11 @@ while repeatmenu == 1:
             
    elif menu == "3":
       os.system('cls' if os.name == 'nt' else 'clear')
+      print(load.iron, load.rawiron, load.coal)
       print("ending turn...")
       load.counter = endturn.buh(load.counter)
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
+      print(load.iron, load.rawiron, load.coal)
       time.sleep(2)
       menu = "0"  
 
