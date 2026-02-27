@@ -129,9 +129,13 @@ while repeatmenu == 1:
 
    elif menu == "2":
       os.system('cls' if os.name == 'nt' else 'clear')
-      print(load.ironmine, " iron mines owned")
-      print(load.ironfoundry, " iron foundries owned")
-      print(load.coalmine, " coal mines owned")
+      print("building interactions:")
+      print("\n1 : buy building")
+      print("2 : return")
+      submenu = input ("\nselect menu: ")
+      if submenu == "1":
+         os.system('cls' if os.name == 'nt' else 'clear')
+         print("coal mines")       # here we need to add cost of building and amount owned and production rate
       buy = input ("\nbuilding name: ")        #completely remake this menu
       building.buybuilding (buy)
       menu = "0"
@@ -145,7 +149,7 @@ while repeatmenu == 1:
       load.counter = endturn.buh(load.counter)
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
       print(load.iron, load.rawiron, load.coal)
-      time.sleep(2)
+      time.sleep(5)
       menu = "0"  
 
    elif menu == "4":

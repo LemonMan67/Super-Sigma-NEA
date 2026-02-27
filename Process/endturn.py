@@ -12,6 +12,14 @@ def buh (counter):
 def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     data = Json.loadjson (Path ("./json/save.json"))
     info = Json.loadjson (Path ("./json/building.json"))
+
+    rawiron = data ["raw iron"]
+    coal = data ["coal"]
+    iron = data ["iron"]
+
+    ironmine = data ["iron mine"]
+    ironfoundry = data ["iron foundry"]
+    coalmine = data ["coal mine"]
     
     rawironstart = rawiron
     coalstart = coal
@@ -23,7 +31,6 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     #load raw resources first to enable proper usage of processing buildings
     rawiron = rawiron + (info ["type"] [1] ["details"] ["output"] ["raw iron"] * ironmine) #the 1 shows the index of the iron mine in "type"
     coal = coal + (info ["type"] [0] ["details"] ["output"] ["coal"] * coalmine) 
-
 
     if coal < coalneeded:
         print("there was not enough coal to fire your industry, but your mines still produced resources")
@@ -51,6 +58,8 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     print(f"coal change: {coalchange}")
     print(f"raw iron change: {rawironchange}")
     print(f"iron change: {ironchange}")
+
+    return iron, rawiron, coal
 
 
 
