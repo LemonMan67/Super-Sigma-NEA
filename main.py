@@ -128,17 +128,22 @@ while repeatmenu == 1:
             time.sleep(2)
 
    elif menu == "2":
-      os.system('cls' if os.name == 'nt' else 'clear')
-      print("building interactions:")
-      print("\n1 : buy building")
-      print("2 : return")
-      submenu = input ("\nselect menu: ")
-      if submenu == "1":
-         os.system('cls' if os.name == 'nt' else 'clear')
-         print("coal mines")       # here we need to add cost of building and amount owned and production rate
-      buy = input ("\nbuilding name: ")        #completely remake this menu
-      building.buybuilding (buy)
-      menu = "0"
+      while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("building interactions:")
+        print("\n1 : buy building")
+        print("2 : return")
+        submenu = input ("\nselect menu: ")
+        if submenu == "1":
+           os.system('cls' if os.name == 'nt' else 'clear')
+           build = Json.loadjson ("./json/building.json")
+           count = Json.loadjson ("./json/save.json")
+           print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["output"]["coal"]} coal/sec, {build["type"][0]["cost"]} cost")    # here we need to add cost of building and amount owned and production rate
+           print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["output"]["raw iron"]} raw iron/sec, {build["type"][1]["cost"]} cost")
+           print(f"iron foundry: {count["coal mine"]} owned , {build["type"][2]["output"]["iron"]} iron/sec, this uses {build["type"][2][input]["coal"]} coal and {build["type"][2][input]["raw iron"]} raw iron/sec {build["type"][0]["cost"]} cost")
+           buy = input ("\npurchase : ")        #completely remake this menu
+           building.buybuilding (buy)
+           menu = "0"
 
       
             
