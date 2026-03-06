@@ -41,6 +41,20 @@
             "raw iron": 1
             },
           "cost" : "20"
+        }
+      },
+
+        {
+         "details": {
+          "building" : "steel mill",
+          "output": {
+               "steel": 1
+            },
+          "input": {
+            "coal": 2,
+            "iron": 1
+            },
+          "cost" : "50"
             }
         }
     ]

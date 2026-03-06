@@ -1,5 +1,6 @@
 from . import Json
 from pathlib import Path
+import time
 
 def buh (counter):
     data = Json.loadjson (Path ("./json/save.json"))
@@ -16,17 +17,22 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     rawiron = data ["raw iron"]
     coal = data ["coal"]
     iron = data ["iron"]
+    steel = data ["steel"]
 
     ironmine = data ["iron mine"]
     ironfoundry = data ["iron foundry"]
     coalmine = data ["coal mine"]
+    steelmill = data ["steel mill"]
     
     rawironstart = rawiron
     coalstart = coal
     ironstart = iron
+    steelstart = steel
 
     #calculate coal needed, if not enough, then only mines will work for that turn and no industry will fire
-    coalneeded = ironfoundry 
+    coalneeded = ironfoundry + info ["type"] [3] ["details"] ["input"] ["coal"] * steelmill
+    rawironneeded = info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry
+    ironneeded = info ["type"] [3] ["details"] ["input"] ["iron"] * steelmill
 
     #load raw resources first to enable proper usage of processing buildings
     rawiron = rawiron + (info ["type"] [1] ["details"] ["output"] ["raw iron"] * ironmine) #the 1 shows the index of the iron mine in "type"
@@ -34,14 +40,23 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
 
     if coal < coalneeded:
         print("there was not enough coal to fire your industry, but your mines still produced resources")
+        time.sleep(2)
         #calcualate all processed resources
     else:
-        iron = iron + (info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry)
-        rawiron = rawiron - (info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry)
-        if rawiron < 0: #if raw iron falls below 0, reverse what i just did 
-            iron = iron - (info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry)
-            rawiron = rawiron + (info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry)
-        
+        if rawiron >= rawironneeded:
+            iron = iron + (info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry)
+            rawiron = rawiron - rawironneeded
+        else:
+            print("there was no ore to smelt in your iron foundries...")
+            time.sleep(2)
+
+        if iron >= ironneeded:
+            steel = steel + (info ["type"] [3] ["details"] ["output"] ["steel"] * steelmill)
+            iron = iron - ironneeded
+        else:
+            print("there was not enough iron to smelt in your steel mills...")
+            time.sleep(2)
+
         coal = coal - coalneeded
 
 
@@ -49,17 +64,20 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     data ["iron"] = iron
     data ["raw iron"] = rawiron
     data ["coal"] = coal
+    data ["steel"] = steel
     Json.writejson (data, Path ("./json/save.json") , 2)
 
     ironchange = iron - ironstart
     rawironchange = rawiron - rawironstart
     coalchange = coal - coalstart
+    steelchange = steel - steelstart
 
     print(f"coal change: {coalchange}")
     print(f"raw iron change: {rawironchange}")
     print(f"iron change: {ironchange}")
+    print(f"steel change: {steelchange}")
 
-    return iron, rawiron, coal
+    return iron, rawiron, coal, steel
 
 
 

@@ -80,9 +80,8 @@ class Building:
    def sellrescource (self , rescourcename , amount ):
       if rescourcename == "iron": #differnt prices for different rescources can be added here
          sellprice = 2
-      elif rescourcename == "coal":
-         print("u cant sell this u simeon")
-         sellprice = 0
+      elif rescourcename == "steel":
+         sellprice = 4
       amount = int (amount)
       while True:   
         if amount <= self.save [rescourcename]: 
@@ -160,13 +159,14 @@ while repeatmenu == 1:
              build = Json.loadjson ("./json/building.json")
              count = Json.loadjson ("./json/save.json")
              print(f"current money: {load.money}\n")
-             print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/sec,   {build["type"][0]["details"]["cost"]} cost")    # here we need to add cost of building and amount owned and production rate
-             print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/sec,   {build["type"][1]["details"]["cost"]} cost")
-             print(f"iron foundry: {count["iron foundry"]} owned , {build["type"][2]["details"]["output"]["iron"]} iron/sec, uses {build["type"][2]["details"]["input"]["coal"]} coal and {build["type"][2]["details"]["input"]["raw iron"]} raw iron/sec,   {build["type"][2]["details"]["cost"]} cost")
+             print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    # here we need to add cost of building and amount owned and production rate
+             print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/turn,   {build["type"][1]["details"]["cost"]} cost")
+             print(f"iron foundry: {count["iron foundry"]} owned , {build["type"][2]["details"]["output"]["iron"]} iron/turn, uses {build["type"][2]["details"]["input"]["coal"]} coal and {build["type"][2]["details"]["input"]["raw iron"]} raw iron/turn,   {build["type"][2]["details"]["cost"]} cost")
+             print(f"steel mill: {count["steel mill"]} owned , {build["type"][3]["details"]["output"]["steel"]} steel/turn, uses {build["type"][3]["details"]["input"]["coal"]} coal and {build["type"][3]["details"]["input"]["iron"]} iron/turn,   {build["type"][3]["details"]["cost"]} cost")
              buy = input ("\npurchase ('exit' to leave): ")      
              if buy == "exit":
                 break
-             elif buy == "coal mine" or buy == "iron mine" or buy == "iron foundry":
+             elif buy == "coal mine" or buy == "iron mine" or buy == "iron foundry" or buy == "steel mill":
                 building.buybuilding(buy)
              else:
                 print("invalid building")
@@ -188,10 +188,11 @@ while repeatmenu == 1:
                count = Json.loadjson ("./json/save.json")
                print(f"current money: {load.money}\n")
                print(f"iron: {count['iron']} owned")
+               print(f"steel: {count['steel']} owned")
                sell = input ("\nsell ('exit' to leave): ")
                if sell == "exit":
                   break
-               elif sell == "iron": #or sell == blah blah blah
+               elif sell == "iron" or sell == "steel": #or sell == blah blah blah
                   amount = input ("amount to sell: ")
                   building.sellrescource(sell, amount)
                else:
@@ -225,7 +226,7 @@ while repeatmenu == 1:
      menu = "0"
 
  
-    
+ #when adding new rescources, edit all appearances of rescource in code, so endturn.rescouce , sellrescource, and rescource interactions
       
         
     
