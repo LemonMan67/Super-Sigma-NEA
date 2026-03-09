@@ -68,11 +68,40 @@ class Building:
                self.save ["money"] = self.money
                Json.writejson (self.save, self.savepath , 2)
                if buildingname == "iron mine":        
-                     load.ironmine += 1
+                     self.save["iron mine"] += 1
+                     cost = self.data["type"][1]["details"]["cost"]
+                     cost = int(cost)
+                     cost = cost * 1.3
+                     cost = round(cost,1)
+                     self.data["type"][1]["details"]["cost"] = cost
+                     Json.writejson (self.data, self.path , 2)
+
                elif buildingname == "iron foundry":         
-                      load.ironfoundry += 1
+                      self.save["iron foundry"] += 1
+                      cost = self.data["type"][2]["details"]["cost"]
+                      cost = int(cost)
+                      cost = cost * 1.3
+                      cost = round(cost,1)
+                      self.data["type"][2]["details"]["cost"] = cost
+                      Json.writejson (self.data, self.path , 2)
+
                elif buildingname == "coal mine":
-                      load.coalmine += 1
+                      self.save["coal mine"] += 1
+                      cost = self.data["type"][0]["details"]["cost"]
+                      cost = int(cost)
+                      cost = cost * 1.3
+                      cost = round(cost,1)
+                      self.data["type"][0]["details"]["cost"] = cost
+                      Json.writejson (self.data, self.path , 2)
+
+               elif buildingname == "steel mill":
+                     self.save["steel mill"] += 1
+                     cost = self.data["type"][3]["details"]["cost"]
+                     cost = int(cost)
+                     cost = cost * 1.3
+                     cost = round(cost,1)
+                     self.data["type"][3]["details"]["cost"] = cost
+                     Json.writejson (self.data, self.path , 2)
       else:
         print("invalid building name")
         time.sleep(2)
@@ -80,13 +109,13 @@ class Building:
    def sellrescource (self , rescourcename , amount ):
       if rescourcename == "iron": #differnt prices for different rescources can be added here
          sellprice = 2
-      elif rescourcename == "steel":
+      if rescourcename == "steel":
          sellprice = 4
       amount = int (amount)
       while True:   
         if amount <= self.save [rescourcename]: 
-           self.money += sellprice * int (amount)
-           self.save [rescourcename] -= int (amount)
+           self.money += sellprice * amount
+           self.save [rescourcename] -= amount
            self.save ["money"] = self.money
            Json.writejson (self.save, self.savepath , 2)
            load.money = self.money
@@ -158,8 +187,9 @@ while repeatmenu == 1:
              os.system('cls' if os.name == 'nt' else 'clear')
              build = Json.loadjson ("./json/building.json")
              count = Json.loadjson ("./json/save.json")
+             #these lines state a building, amount owned, production rate and needs
              print(f"current money: {load.money}\n")
-             print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    # here we need to add cost of building and amount owned and production rate
+             print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    
              print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/turn,   {build["type"][1]["details"]["cost"]} cost")
              print(f"iron foundry: {count["iron foundry"]} owned , {build["type"][2]["details"]["output"]["iron"]} iron/turn, uses {build["type"][2]["details"]["input"]["coal"]} coal and {build["type"][2]["details"]["input"]["raw iron"]} raw iron/turn,   {build["type"][2]["details"]["cost"]} cost")
              print(f"steel mill: {count["steel mill"]} owned , {build["type"][3]["details"]["output"]["steel"]} steel/turn, uses {build["type"][3]["details"]["input"]["coal"]} coal and {build["type"][3]["details"]["input"]["iron"]} iron/turn,   {build["type"][3]["details"]["cost"]} cost")

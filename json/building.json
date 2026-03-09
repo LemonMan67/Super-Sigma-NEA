@@ -1,61 +1,54 @@
 {
-    "type": [
-        {
-        "details": {
-          "building" : "coal mine",
-          "output": {
-              "coal": 5
-          },
-          "input": {
-            "false": false
-
-          },
-          "cost" : "10"
-        }
+  "type": [
+    {
+      "details": {
+        "building": "coal mine",
+        "output": {
+          "coal": 5
         },
-
-
-        {
-        "details": {
-          "building" : "iron mine",
-          "output": {
-              "raw iron": 3
-          },
-          "input": {
-            "false": false
-
-          },
-          "cost" : "10"
-        }
+        "input": {
+          "false": false
         },
-
-
-        {
-        "details": {
-          "building" : "iron foundry",
-          "output": {
-               "iron": 1
-            },
-          "input": {
-            "coal": 1,
-            "raw iron": 1
-            },
-          "cost" : "20"
-        }
-      },
-
-        {
-         "details": {
-          "building" : "steel mill",
-          "output": {
-               "steel": 1
-            },
-          "input": {
-            "coal": 2,
-            "iron": 1
-            },
-          "cost" : "50"
-            }
-        }
-    ]
+        "cost": 10
+      }
+    },
+    {
+      "details": {
+        "building": "iron mine",
+        "output": {
+          "raw iron": 3
+        },
+        "input": {
+          "false": false
+        },
+        "cost": 10
+      }
+    },
+    {
+      "details": {
+        "building": "iron foundry",
+        "output": {
+          "iron": 1
+        },
+        "input": {
+          "coal": 1,
+          "raw iron": 1
+        },
+        "cost": 20
+      }
+    },
+    {
+      "details": {
+        "building": "steel mill",
+        "output": {
+          "steel": 1
+        },
+        "input": {
+          "coal": 2,
+          "iron": 1
+        },
+        "cost": 50
+      }
+    }
+  ]
 }
