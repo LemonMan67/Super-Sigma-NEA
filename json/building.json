@@ -9,7 +9,7 @@
         "input": {
           "false": false
         },
-        "cost": 10
+        "cost": 33.8
       }
     },
     {
@@ -21,7 +21,7 @@
         "input": {
           "false": false
         },
-        "cost": 10
+        "cost": 13.0
       }
     },
     {
@@ -34,7 +34,7 @@
           "coal": 1,
           "raw iron": 1
         },
-        "cost": 20
+        "cost": 26.0
       }
     },
     {
@@ -47,7 +47,32 @@
           "coal": 2,
           "iron": 1
         },
-        "cost": 50
+        "cost": 109.2
+      }
+    },
+    {
+      "details": {
+        "building": "copper mine",
+        "output": {
+          "raw copper": 1
+        },
+        "input": {
+          "false": false
+        },
+        "cost": 150
+      }
+    },
+    {
+      "details": {
+        "building": "copper foundry",
+        "output": {
+          "copper": 1
+        },
+        "input": {
+          "coal": 1,
+          "raw copper": 1
+        },
+        "cost": 150
       }
     }
   ]

@@ -1,6 +1,7 @@
 from . import Json
 from pathlib import Path
 import time
+import os
 
 def buh (counter):
     data = Json.loadjson (Path ("./json/save.json"))
@@ -78,6 +79,16 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     print(f"steel change: {steelchange}")
 
     return iron, rawiron, coal, steel
+
+def unlock():
+    data = Json.loadjson (Path ("./json/save.json"))
+
+    if data ["steel"] >= 10:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("you have unlocked copper!!!")
+        time.sleep(2)
+        data ["copperunlock"] = 1
+        Json.writejson (data, Path ("./json/save.json") , 2)
 
 
 
