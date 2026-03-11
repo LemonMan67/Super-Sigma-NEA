@@ -8,14 +8,14 @@
         "type" : "modern",
         "hp" : 50,
         "org" : 20,
-        "attack" : 75,
+        "attack" : 90,
         "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
+        "breakthrough" : 150,
+        "pierce" : 250,
         "armour" : 125,
-        "AA" : 0 , 
+        "AA" : 5 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 2
         }
       },
       {
@@ -23,14 +23,14 @@
         "type" : "CW",
         "hp" : 50,
         "org" : 20,
-        "attack" : 60,
+        "attack" : 80,
         "defense" : 80,
-        "breakthrough" : 80,
-        "pierce" : 100,
+        "breakthrough" : 120,
+        "pierce" : 150,
         "armour" : 90,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 1
         }
       },
       { 
@@ -41,11 +41,11 @@
         "attack" : 50,
         "defense" : 60,
         "breakthrough" : 70,
-        "pierce" : 80,
+        "pierce" : 100,
         "armour" : 80,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 67
+        "entrenchment" : 1
         }
       }
     ]
@@ -60,14 +60,14 @@
       "era" : {
         "type" : "modern",
         "hp" : 50,
-        "org" : 20,
-        "attack" : 75,
-        "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
-        "armour" : 125,
-        "AA" : 0 , 
-        "recon" : 0,
+        "org" : 25,
+        "attack" : 60,
+        "defense" : 120,
+        "breakthrough" : 90,
+        "pierce" : 80,
+        "armour" : 30,
+        "AA" : 15 , 
+        "recon" : 3,
         "entrenchment" : 0 
         }
       },
@@ -76,29 +76,29 @@
         "type" : "CW",
         "hp" : 50,
         "org" : 20,
-        "attack" : 60,
+        "attack" : 50,
         "defense" : 80,
         "breakthrough" : 80,
-        "pierce" : 100,
-        "armour" : 90,
-        "AA" : 0 , 
-        "recon" : 0,
+        "pierce" : 50,
+        "armour" : 20,
+        "AA" : 10 , 
+        "recon" : 3,
         "entrenchment" : 0 
         }
       },
       { 
       "era" :{
         "type" : "WW2",
-        "hp" : 40,
-        "org" : 15,
-        "attack" : 50,
-        "defense" : 60,
-        "breakthrough" : 70,
-        "pierce" : 80,
-        "armour" : 80,
-        "AA" : 0 , 
-        "recon" : 0,
-        "entrenchment" : 67
+        "hp" : 30,
+        "org" : 20,
+        "attack" : 30,
+        "defense" : 50,
+        "breakthrough" : 30,
+        "pierce" : 10,
+        "armour" : 10,
+        "AA" : 5 , 
+        "recon" : 1,
+        "entrenchment" : 0
         }
       }
     ]
@@ -112,46 +112,46 @@
       {
       "era" : {
         "type" : "modern",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 75,
-        "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
-        "armour" : 125,
-        "AA" : 0 , 
-        "recon" : 0,
-        "entrenchment" : 0 
+        "hp" : 30,
+        "org" : 50,
+        "attack" : 30,
+        "defense" : 80,
+        "breakthrough" : 25,
+        "pierce" : 80,
+        "armour" : 0,
+        "AA" : 5 , 
+        "recon" : 1,
+        "entrenchment" : 5
         }
       },
       {
       "era" : {
         "type" : "CW",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 60,
-        "defense" : 80,
-        "breakthrough" : 80,
-        "pierce" : 100,
-        "armour" : 90,
-        "AA" : 0 , 
-        "recon" : 0,
-        "entrenchment" : 0 
+        "hp" : 30,
+        "org" : 40,
+        "attack" : 25,
+        "defense" : 70,
+        "breakthrough" : 20,
+        "pierce" : 30,
+        "armour" : 0,
+        "AA" : 3 , 
+        "recon" : 1,
+        "entrenchment" : 3
         }
       },
       { 
       "era" :{
         "type" : "WW2",
-        "hp" : 40,
-        "org" : 15,
-        "attack" : 50,
+        "hp" : 25,
+        "org" : 40,
+        "attack" : 20,
         "defense" : 60,
-        "breakthrough" : 70,
-        "pierce" : 80,
+        "breakthrough" : 10,
+        "pierce" : 15,
         "armour" : 80,
         "AA" : 0 , 
-        "recon" : 0,
-        "entrenchment" : 67
+        "recon" : 1,
+        "entrenchment" : 2
         }
       }
     ]
@@ -165,14 +165,14 @@
       {
       "era" : {
         "type" : "modern",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 75,
-        "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
-        "armour" : 125,
-        "AA" : 0 , 
+        "hp" : 20,
+        "org" : 10,
+        "attack" : 150,
+        "defense" : 30,
+        "breakthrough" : 10,
+        "pierce" : 40,
+        "armour" : 20,
+        "AA" : 5 , 
         "recon" : 0,
         "entrenchment" : 0 
         }
@@ -180,14 +180,14 @@
       {
       "era" : {
         "type" : "CW",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 60,
-        "defense" : 80,
-        "breakthrough" : 80,
-        "pierce" : 100,
-        "armour" : 90,
-        "AA" : 0 , 
+        "hp" : 20,
+        "org" : 10,
+        "attack" : 120,
+        "defense" : 25,
+        "breakthrough" : 10,
+        "pierce" : 40,
+        "armour" : 5,
+        "AA" : 3 , 
         "recon" : 0,
         "entrenchment" : 0 
         }
@@ -195,16 +195,16 @@
       { 
       "era" :{
         "type" : "WW2",
-        "hp" : 40,
+        "hp" : 15,
         "org" : 15,
-        "attack" : 50,
-        "defense" : 60,
-        "breakthrough" : 70,
-        "pierce" : 80,
-        "armour" : 80,
+        "attack" : 80,
+        "defense" : 10,
+        "breakthrough" : 5,
+        "pierce" : 30,
+        "armour" : 3,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 67
+        "entrenchment" : 0
         }
       }
     ]
@@ -217,14 +217,14 @@
       {
       "era" : {
         "type" : "modern",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 75,
-        "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
-        "armour" : 125,
-        "AA" : 0 , 
+        "hp" : 30,
+        "org" : 10,
+        "attack" : 70,
+        "defense" : 40,
+        "breakthrough" : 30,
+        "pierce" : 40,
+        "armour" : 30,
+        "AA" : 50 , 
         "recon" : 0,
         "entrenchment" : 0 
         }
@@ -232,14 +232,14 @@
       {
       "era" : {
         "type" : "CW",
-        "hp" : 50,
-        "org" : 20,
+        "hp" : 30,
+        "org" : 10,
         "attack" : 60,
-        "defense" : 80,
-        "breakthrough" : 80,
-        "pierce" : 100,
-        "armour" : 90,
-        "AA" : 0 , 
+        "defense" : 40,
+        "breakthrough" : 30,
+        "pierce" : 35,
+        "armour" : 30,
+        "AA" : 40 , 
         "recon" : 0,
         "entrenchment" : 0 
         }
@@ -247,16 +247,16 @@
       { 
       "era" :{
         "type" : "WW2",
-        "hp" : 40,
+        "hp" : 20,
         "org" : 15,
-        "attack" : 50,
-        "defense" : 60,
-        "breakthrough" : 70,
-        "pierce" : 80,
-        "armour" : 80,
-        "AA" : 0 , 
+        "attack" : 20,
+        "defense" : 25,
+        "breakthrough" : 20,
+        "pierce" : 30,
+        "armour" : 15,
+        "AA" : 25 , 
         "recon" : 0,
-        "entrenchment" : 67
+        "entrenchment" : 0
         }
       }
     ]
@@ -269,28 +269,28 @@
       {
       "era" : {
         "type" : "modern",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 75,
-        "defense" : 100,
-        "breakthrough" : 100,
-        "pierce" : 150,
-        "armour" : 125,
+        "hp" : 40,
+        "org" : 40,
+        "attack" : 30,
+        "defense" : 50,
+        "breakthrough" : 20,
+        "pierce" : 400,
+        "armour" : 0,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 5 
         }
       },
       {
       "era" : {
         "type" : "CW",
-        "hp" : 50,
-        "org" : 20,
-        "attack" : 60,
+        "hp" : 15,
+        "org" : 10,
+        "attack" : 50,
         "defense" : 80,
-        "breakthrough" : 80,
-        "pierce" : 100,
-        "armour" : 90,
+        "breakthrough" : 30,
+        "pierce" : 200,
+        "armour" : 30,
         "AA" : 0 , 
         "recon" : 0,
         "entrenchment" : 0 
@@ -299,16 +299,16 @@
       { 
       "era" :{
         "type" : "WW2",
-        "hp" : 40,
-        "org" : 15,
-        "attack" : 50,
-        "defense" : 60,
-        "breakthrough" : 70,
-        "pierce" : 80,
-        "armour" : 80,
+        "hp" : 15,
+        "org" : 5,
+        "attack" : 40,
+        "defense" : 30,
+        "breakthrough" : 20,
+        "pierce" : 120,
+        "armour" : 40,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 67
+        "entrenchment" : 0
         }
       }
     ]

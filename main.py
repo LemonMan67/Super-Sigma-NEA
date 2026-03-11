@@ -28,6 +28,7 @@ class Battalion:
         stat = input ("\n")
         os.system('cls' if os.name == 'nt' else 'clear')
         while repeat == 1:
+          self.passthrough = int(-1)
           if stat == "stop":
             repeat = 0
           elif stat == "hp" or stat == "attack" or stat == "org" or stat == "defense" or stat == "breakthrough" or stat == "pierce" or stat == "armour" or stat == "AA" or stat == "recon" or stat == "entrenchment":
@@ -37,7 +38,7 @@ class Battalion:
               print (f" Unit:  {x['unit']} ")
               for y in x ["list"]:
                 check = y["era"]["type"]
-                check = str(check)                                 #this function sorts through the json file to return the required stat for each unit, all stats are the same for each batallion
+                check = str(check)                                 #this function sorts through the json batallion file to return the required stat for each unit
                 listcheck = str(self.sortlist[self.passthrough])
                 if check == listcheck:  
                   print (f"  has { y["era"][stat]} {stat}   ( {y["era"]["type"]} )")
@@ -45,7 +46,6 @@ class Battalion:
           else:
             print("invalid stat")
             stat = input ("\nwhich stat do you want to check? (hp, attack, org, defense, breakthrough, pierce, armour, AA, recon, entrenchment) or type stop to exit: ")
-
 
 class Building:
    def __init__(self , filepath = "./json/building.json"):
