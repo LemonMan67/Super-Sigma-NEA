@@ -15,7 +15,8 @@
         "armour" : 125,
         "AA" : 5 , 
         "recon" : 0,
-        "entrenchment" : 2
+        "entrenchment" : 2,
+        "amount" : 50
         }
       },
       {
@@ -30,7 +31,8 @@
         "armour" : 90,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 1
+        "entrenchment" : 1,
+        "amount" : 50
         }
       },
       { 
@@ -45,7 +47,8 @@
         "armour" : 80,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 1
+        "entrenchment" : 1,
+        "amount" : 80
         }
       }
     ]
@@ -68,7 +71,8 @@
         "armour" : 30,
         "AA" : 15 , 
         "recon" : 3,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 100
         }
       },
       {
@@ -83,7 +87,8 @@
         "armour" : 20,
         "AA" : 10 , 
         "recon" : 3,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 100
         }
       },
       { 
@@ -98,7 +103,8 @@
         "armour" : 10,
         "AA" : 5 , 
         "recon" : 1,
-        "entrenchment" : 0
+        "entrenchment" : 0,
+        "amount" : 150
         }
       }
     ]
@@ -121,7 +127,8 @@
         "armour" : 0,
         "AA" : 5 , 
         "recon" : 1,
-        "entrenchment" : 5
+        "entrenchment" : 5,
+        "amount" : 1000
         }
       },
       {
@@ -136,7 +143,8 @@
         "armour" : 0,
         "AA" : 3 , 
         "recon" : 1,
-        "entrenchment" : 3
+        "entrenchment" : 3,
+        "amount" : 1000
         }
       },
       { 
@@ -151,7 +159,8 @@
         "armour" : 80,
         "AA" : 0 , 
         "recon" : 1,
-        "entrenchment" : 2
+        "entrenchment" : 2,
+        "amount" : 1000
         }
       }
     ]
@@ -174,7 +183,8 @@
         "armour" : 20,
         "AA" : 5 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 50
         }
       },
       {
@@ -189,7 +199,8 @@
         "armour" : 5,
         "AA" : 3 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 50
         }
       },
       { 
@@ -204,7 +215,8 @@
         "armour" : 3,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 0
+        "entrenchment" : 0,
+        "amount" : 100
         }
       }
     ]
@@ -226,7 +238,8 @@
         "armour" : 30,
         "AA" : 50 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 25
         }
       },
       {
@@ -241,7 +254,8 @@
         "armour" : 30,
         "AA" : 40 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 30
         }
       },
       { 
@@ -256,7 +270,8 @@
         "armour" : 15,
         "AA" : 25 , 
         "recon" : 0,
-        "entrenchment" : 0
+        "entrenchment" : 0,
+        "amount" : 50
         }
       }
     ]
@@ -278,7 +293,8 @@
         "armour" : 0,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 5 
+        "entrenchment" : 5 ,
+        "amount" : 250
         }
       },
       {
@@ -293,7 +309,8 @@
         "armour" : 30,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 0 
+        "entrenchment" : 0 ,
+        "amount" : 50
         }
       },
       { 
@@ -308,7 +325,8 @@
         "armour" : 40,
         "AA" : 0 , 
         "recon" : 0,
-        "entrenchment" : 0
+        "entrenchment" : 0,
+        "amount" : 80
         }
       }
     ]

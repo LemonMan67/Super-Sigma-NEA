@@ -6,6 +6,11 @@ from Process import Json
 
 #change values in battlalion json file
 
+class division:
+      def __init__(self, filepath = "./json/division.json"):
+         self.path = Path (filepath)  
+         self.data = Json.loadjson (self.path)
+
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
         self.path = Path (filepath)  

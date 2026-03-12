@@ -1,0 +1,153 @@
+{
+  "battalion" : [
+    {
+    "unit" : "tank",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+        "cost" : 250
+
+
+        }
+      }
+    ]
+    },
+
+
+    {
+    "unit" : "IFV",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+
+        }
+      }
+    ]
+    },
+
+    {
+    "unit" : "infantry",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+
+        }
+      }
+    ]
+    },
+
+
+    {
+    "unit" : "artillery",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+
+        }
+      }
+     ]
+    },
+
+    {
+    "unit" : "AT",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+
+        }
+      }
+     ]
+    },
+
+
+    {
+    "unit" : "AA",
+    "list" : [
+      {
+      "era" : {
+        "type" : "modern",
+
+        }
+      },
+      {
+      "era" : {
+        "type" : "CW",
+
+        }
+      },
+      { 
+      "era" :{
+        "type" : "WW2",
+
+        }
+      }
+    ]
+    }
+  ]
+}
