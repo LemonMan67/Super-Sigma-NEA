@@ -6,10 +6,30 @@ from Process import Json
 
 #change values in battlalion json file
 
-class division:
+class Division:
       def __init__(self, filepath = "./json/division.json"):
          self.path = Path (filepath)  
-         self.data = Json.loadjson (self.path)
+         self.div = Json.loadjson (self.path)
+         self.battalionpath = Path ("./json/battalion.json")
+         self.bat = Json.loadjson (self.battalionpath)
+         self.savepath = Path ("./json/save.json")
+         self.save = Json.loadjson (self.savepath)
+         self.a1 = self.div["a1"]
+         self.a2 = self.div["a2"]
+         self.a3 = self.div["a3"]
+         self.a4 = self.div["a4"]
+         self.b1 = self.div["b1"]
+         self.b2 = self.div["b2"]
+         self.b3 = self.div["b3"]
+         self.b4 = self.div["b4"]
+         self.c1 = self.div["c1"]
+         self.c2 = self.div["c2"]
+         self.c3 = self.div["c3"]
+         self.c4 = self.div["c4"]
+         self.d1 = self.div["d1"]
+         self.d2 = self.div["d2"]
+         self.d3 = self.div["d3"]
+         self.d4 = self.div["d4"]
 
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
@@ -169,6 +189,7 @@ class Load:
 load = Load()
 battalion = Battalion()
 building = Building()
+division = Division()
 
 
 repeatmenu = 1
@@ -182,6 +203,7 @@ while repeatmenu == 1:
       print("\n1 : battalion interactions")
       print("2 : build/upgrade structures      current money = ", load.money)
       print("3 : rescource interactions")
+      print("4:  division designer")
       print("4 : end turn                      current turn = ", load.counter) 
       print("5 : exit")
       menu = input ("\nselect menu: ")
@@ -266,9 +288,25 @@ while repeatmenu == 1:
               menu = "0"
               break
 
+   elif menu == "4":
+      while True:
+         os.system('cls' if os.name == 'nt' else 'clear')
+         print("division designer:")
+         print(" 1     2     3     4")
+         print(f"a[ ]")
+         print(f"b[ ]")
+         print(f"c[ ]")
+         print(f"d[ ]")
+
+         print("\n1 : return")
+         submenu = input ("\nselect menu: ")
+         if submenu == "1":
+            break
+
+      menu = "0"
 
             
-   elif menu == "4":
+   elif menu == "5":
       os.system('cls' if os.name == 'nt' else 'clear')
       print("ending turn...")
       load.counter = endturn.buh(load.counter)
@@ -277,7 +315,7 @@ while repeatmenu == 1:
       time.sleep(5)
       menu = "0"  
 
-   elif menu == "5":
+   elif menu == "6":
       print("exiting and saving...")
       # add save function here???
       time.sleep(3)
