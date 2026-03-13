@@ -63,7 +63,7 @@
       "era" : {
         "type" : "modern",
         "hp" : 50,
-        "org" : 25,
+        "org" : 50,
         "attack" : 60,
         "defense" : 120,
         "breakthrough" : 90,
@@ -79,7 +79,7 @@
       "era" : {
         "type" : "CW",
         "hp" : 50,
-        "org" : 20,
+        "org" : 40,
         "attack" : 50,
         "defense" : 80,
         "breakthrough" : 80,
