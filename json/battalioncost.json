@@ -172,18 +172,21 @@
       {
       "era" : {
         "type" : "modern",
+        "cost" : 2500
 
         }
       },
       {
       "era" : {
         "type" : "CW",
+        "cost" : 500
 
         }
       },
       { 
       "era" :{
         "type" : "WW2",
+        "cost" : 50
 
         }
       }

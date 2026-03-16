@@ -14,9 +14,11 @@ class Division:
          self.bat = Json.loadjson (self.battalionpath)
          self.savepath = Path ("./json/save.json")
          self.save = Json.loadjson (self.savepath)
+         self.batcostpath = Path ("./json/battalioncost.json")
+         self.batc = Json.loadjson (self.batcostpath)
          self.a1 = self.div["a1"]
          self.a2 = self.div["a2"]
-         self.a3 = self.div["a3"]
+         self.a3 = self.div["a3"]              #loads all battalion types for each battalion in the division - will be used to find div stats
          self.a4 = self.div["a4"]
          self.b1 = self.div["b1"]
          self.b2 = self.div["b2"]
@@ -30,6 +32,29 @@ class Division:
          self.d2 = self.div["d2"]
          self.d3 = self.div["d3"]
          self.d4 = self.div["d4"]
+         self.hp = int(0)
+         self.attack = int(0)
+         self.org = int(0)
+         self.defense = int(0)
+         self.breakthrough = int(0)
+         self.pierce = int(0)
+         self.armour = int(0)
+         self.AA = int(0)
+         self.recon = int(0)
+         self.entrenchment = int(0)
+         self.steel = int(0)
+         self.copper = int(0)
+         self.rare = int(0)
+         self.oil = int(0)
+         self.cost = int(0)
+         self.divlist = [self.a1, self.a2, self.a3, self.a4, self.b1, self.b2, self.b3, self.b4, self.c1, self.c2, self.c3, self.c4, self.d1, self.d2, self.d3, self.d4]
+
+      def divstat(self):
+         for x in self.divlist:
+            self.hp += self.bat["battalion"][x]["hp"]
+
+
+         
 
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
@@ -195,6 +220,7 @@ division = Division()
 repeatmenu = 1
 menu = "0"
 
+#main menu loop - where the player selects what to do
 
 while repeatmenu == 1:
    if menu == "0":
@@ -292,11 +318,11 @@ while repeatmenu == 1:
       while True:
          os.system('cls' if os.name == 'nt' else 'clear')
          print("division designer:")
-         print(" 1     2     3     4")
-         print(f"a[ ]")
-         print(f"b[ ]")
-         print(f"c[ ]")
-         print(f"d[ ]")
+         print("\n   1     2     3     4")
+         print(f"a[ {division.a1}  ,  {division.a2}  ,  {division.a3}  ,  {division.a4} ]     {division.hp} hp,                      {division.attack} attack,               {division.armour} armour")
+         print(f"b[ {division.b1}  ,  {division.b2}  ,  {division.b3}  ,  {division.b4} ]     {division.org} org                     {division.breakthrough} breakthrough,   {division.AA} AA")
+         print(f"c[ {division.c1}  ,  {division.c2}  ,  {division.c3}  ,  {division.c4} ]     {division.defense} defense             {division.pierce} pierce,               {division.recon} recon")
+         print(f"d[ {division.d1}  ,  {division.d2}  ,  {division.d3}  ,  {division.d4} ]     {division.entrenchment} entrenchment")
 
          print("\n1 : return")
          submenu = input ("\nselect menu: ")
