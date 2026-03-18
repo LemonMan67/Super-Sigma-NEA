@@ -3,6 +3,7 @@ import time
 import os
 from Process import endturn
 from Process import Json
+from Process import function
 
 #change values in battlalion json file
 
@@ -47,6 +48,26 @@ class Division:
          self.rare = int(0)
          self.oil = int(0)
          self.cost = int(0)
+         self.divlist = [self.a1, self.a2, self.a3, self.a4, self.b1, self.b2, self.b3, self.b4, self.c1, self.c2, self.c3, self.c4, self.d1, self.d2, self.d3, self.d4]
+
+      def reload(self):
+         self.div = Json.loadjson(self.path)
+         self.a1 = self.div["a1"]
+         self.a2 = self.div["a2"]
+         self.a3 = self.div["a3"]
+         self.a4 = self.div["a4"]
+         self.b1 = self.div["b1"]
+         self.b2 = self.div["b2"]
+         self.b3 = self.div["b3"]
+         self.b4 = self.div["b4"]
+         self.c1 = self.div["c1"]
+         self.c2 = self.div["c2"]
+         self.c3 = self.div["c3"]
+         self.c4 = self.div["c4"]
+         self.d1 = self.div["d1"]
+         self.d2 = self.div["d2"]
+         self.d3 = self.div["d3"]
+         self.d4 = self.div["d4"]
          self.divlist = [self.a1, self.a2, self.a3, self.a4, self.b1, self.b2, self.b3, self.b4, self.c1, self.c2, self.c3, self.c4, self.d1, self.d2, self.d3, self.d4]
 
       def divstat(self):
@@ -230,8 +251,8 @@ while repeatmenu == 1:
       print("2 : build/upgrade structures      current money = ", load.money)
       print("3 : rescource interactions")
       print("4:  division designer")
-      print("4 : end turn                      current turn = ", load.counter) 
-      print("5 : exit")
+      print("5 : end turn                      current turn = ", load.counter) 
+      print("6 : exit")
       menu = input ("\nselect menu: ")
       
    elif menu == "1":
@@ -316,19 +337,37 @@ while repeatmenu == 1:
 
    elif menu == "4":
       while True:
+         division.reload()
          os.system('cls' if os.name == 'nt' else 'clear')
          print("division designer:")
          print("\n   1     2     3     4")
-         print(f"a[ {division.a1}  ,  {division.a2}  ,  {division.a3}  ,  {division.a4} ]     {division.hp} hp,                      {division.attack} attack,               {division.armour} armour")
-         print(f"b[ {division.b1}  ,  {division.b2}  ,  {division.b3}  ,  {division.b4} ]     {division.org} org                     {division.breakthrough} breakthrough,   {division.AA} AA")
-         print(f"c[ {division.c1}  ,  {division.c2}  ,  {division.c3}  ,  {division.c4} ]     {division.defense} defense             {division.pierce} pierce,               {division.recon} recon")
-         print(f"d[ {division.d1}  ,  {division.d2}  ,  {division.d3}  ,  {division.d4} ]     {division.entrenchment} entrenchment")
+         print(f"a[ {division.a1}  ,  {division.a2}  ,  {division.a3}  ,  {division.a4} ]     {division.hp} hp,              {division.attack} attack,          {division.armour} armour,")
+         print(f"b[ {division.b1}  ,  {division.b2}  ,  {division.b3}  ,  {division.b4} ]     {division.org} org,             {division.breakthrough} breakthrough,    {division.AA} AA,")
+         print(f"c[ {division.c1}  ,  {division.c2}  ,  {division.c3}  ,  {division.c4} ]     {division.defense} defense,         {division.pierce} pierce,          {division.recon} recon,")
+         print(f"d[ {division.d1}  ,  {division.d2}  ,  {division.d3}  ,  {division.d4} ]     {division.entrenchment} entrenchment,")
+         print("\nkey: tank = Ta, IFV = IV, infantry = In, arty = Ar, Anti air = AA, Anti tank = AT   blank = --")
 
          print("\n1 : return")
+         print("2 : edit template")
          submenu = input ("\nselect menu: ")
          if submenu == "1":
+            menu = "0"
             break
-
+         if submenu == "2":
+            edit = input("select tile to edit (e.g. a1): ")
+            if edit == "exit":
+               pass
+            elif edit == "a1" or edit == "a2" or edit == "a3" or edit == "a4" or edit == "b1" or edit == "b2" or edit == "b3" or edit == "b4" or edit == "c1" or edit == "c2" or edit == "c3" or edit == "c4" or edit == "d1" or edit == "d2" or edit == "d3" or edit == "d4":
+               batt = input("choose battalion to replace with):  (Ta/IV/In/Ar/AA/AT/--) ")
+               if batt == "Ta" or batt == "IV" or batt == "In" or batt == "Ar" or batt == "AA" or batt == "AT" or batt == "--":
+                  function.divchange(edit, batt)
+               else: 
+                  print("invalid battalion")
+                  time.sleep(2)
+            else:
+               print("invalid tile")
+               time.sleep(2)
+            
       menu = "0"
 
             
@@ -337,8 +376,8 @@ while repeatmenu == 1:
       print("ending turn...")
       load.counter = endturn.buh(load.counter)
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
+      time.sleep(4)
       endturn.unlock()
-      time.sleep(5)
       menu = "0"  
 
    elif menu == "6":
