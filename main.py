@@ -4,6 +4,7 @@ import os
 from Process import endturn
 from Process import Json
 from Process import function
+from Process import statcalc 
 
 #change values in battlalion json file
 
@@ -17,6 +18,12 @@ class Division:
          self.save = Json.loadjson (self.savepath)
          self.batcostpath = Path ("./json/battalioncost.json")
          self.batc = Json.loadjson (self.batcostpath)
+         self.tankera = self.save ["tankera"]
+         self.IFVera = self.save ["IFVera"]
+         self.Infera = self.save ["Infera"]
+         self.artera = self.save ["artera"]
+         self.AAera = self.save ["AAera"]
+         self.ATera = self.save ["ATera"]
          self.a1 = self.div["a1"]
          self.a2 = self.div["a2"]
          self.a3 = self.div["a3"]              #loads all battalion types for each battalion in the division - will be used to find div stats
@@ -52,6 +59,12 @@ class Division:
 
       def reload(self):
          self.div = Json.loadjson(self.path)
+         self.tankera = self.save ["tankera"]
+         self.IFVera = self.save ["IFVera"]
+         self.Infera = self.save ["Infera"]
+         self.artera = self.save ["artera"]
+         self.AAera = self.save ["AAera"]
+         self.ATera = self.save ["ATera"]
          self.a1 = self.div["a1"]
          self.a2 = self.div["a2"]
          self.a3 = self.div["a3"]
@@ -71,11 +84,17 @@ class Division:
          self.divlist = [self.a1, self.a2, self.a3, self.a4, self.b1, self.b2, self.b3, self.b4, self.c1, self.c2, self.c3, self.c4, self.d1, self.d2, self.d3, self.d4]
 
       def divstat(self):
-         for x in self.divlist:
-            self.hp += self.bat["battalion"][x]["hp"]
+         self.hp = statcalc.hp(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.attack = statcalc.attack(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.org = statcalc.org(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.defense = statcalc.defense(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.breakthrough = statcalc.breakthrough(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.pierce = statcalc.pierce(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.armour = statcalc.armour(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.AA = statcalc.AA(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.recon = statcalc.recon(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
+         self.entrenchment = statcalc.entrenchment(self.divlist, self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera)
 
-
-         
 
 class Battalion:
     def __init__(self, filepath = "./json/battalion.json"):
@@ -232,6 +251,20 @@ class Load:
       self.ironfoundry = self.data ["iron foundry"]
       self.coalmine = self.data ["coal mine"]
 
+class Enemy:
+   def __init__(self):
+      self.hp = int(0)
+      self.attack = int(0)
+      self.org = int(0)
+      self.defense = int(0)
+      self.breakthrough = int(0)
+      self.pierce = int(0)
+      self.armour = int(0)
+      self.AA = int(0)
+      self.recon = int(0)
+      self.entrenchment = int(0)
+
+enemy = Enemy()
 load = Load()
 battalion = Battalion()
 building = Building()
@@ -339,6 +372,7 @@ while repeatmenu == 1:
       while True:
          division.reload()
          os.system('cls' if os.name == 'nt' else 'clear')
+         division.divstat()   
          print("division designer:")
          print("\n   1     2     3     4")
          print(f"a[ {division.a1}  ,  {division.a2}  ,  {division.a3}  ,  {division.a4} ]     {division.hp} hp,              {division.attack} attack,          {division.armour} armour,")

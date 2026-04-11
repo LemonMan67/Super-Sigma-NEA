@@ -84,8 +84,8 @@
       "era" : {
         "type" : "modern",
         "cost" : 25,
-        "steel" : 25,
-        "copper" : 50
+        "steel" : 10,
+        "copper" : 15
 
         }
       },
@@ -93,8 +93,8 @@
       "era" : {
         "type" : "CW",
         "cost" : 8,
-        "steel" : 10,
-        "copper" : 10
+        "steel" : 5,
+        "copper" : 5
 
         }
       },
@@ -116,6 +116,10 @@
       {
       "era" : {
         "type" : "modern",
+        "steel" : 50,
+        "copper" : 25,
+        "rare metals" : 5,
+        "oil" : 10,
         "cost" : 250
 
         }
@@ -123,7 +127,10 @@
       {
       "era" : {
         "type" : "CW",
-        "cost" : 50
+        "steel" : 25,
+        "copper" : 10,
+        "rare metals" : 5,
+        "cost" : 100
 
 
         }
@@ -131,7 +138,8 @@
       { 
       "era" :{
         "type" : "WW2",
-        "cost" : 10
+        "steel" : 10,
+        "cost" : 50
 
         }
       }
@@ -144,22 +152,31 @@
       {
       "era" : {
         "type" : "modern",
-        "cost" : 250
+        "steel" : 10,
+        "copper" : 15,
+        "rare metals" : 5,
+        "cost" : 50
 
         }
       },
       {
       "era" : {
         "type" : "CW",
-        "cost" : 750
+        "steel" : 100,
+        "copper" : 25,
+        "rare metals" : 10,
+        "oil" : 20,
+        "cost" : 1000
 
         }
       },
       { 
       "era" :{
         "type" : "WW2",
-        "cost" : 500
-
+        "cost" : 500,
+        "steel" : 50,
+        "copper" : 20,
+        "oil" : 10
         }
       }
      ]
@@ -172,13 +189,21 @@
       {
       "era" : {
         "type" : "modern",
-        "cost" : 2500
+        "steel" : 80,
+        "copper" : 100,
+        "rare metals" : 25,
+        "oil" : 50,
+        "cost" : 5000
 
         }
       },
       {
       "era" : {
         "type" : "CW",
+        "steel" : 40,
+        "copper" : 50,
+        "rare metals" : 25,
+        "oil" : 20,
         "cost" : 500
 
         }
@@ -186,6 +211,7 @@
       { 
       "era" :{
         "type" : "WW2",
+        "steel" : 10,
         "cost" : 50
 
         }
