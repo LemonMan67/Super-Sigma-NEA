@@ -453,6 +453,8 @@ while repeatmenu == 1:
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
       time.sleep(4)
       endturn.unlock()
+      endturn.divcreate(division.cost , division.steel , division.copper , division.rare , division.oil)
+      
       menu = "0"  
 
    elif menu == "5":
