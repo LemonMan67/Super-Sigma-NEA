@@ -773,3 +773,393 @@ def entrenchment(divlist, tankera, IFVera, Infera, artera, AAera, ATera): #entre
             entrenchment += 0
 
     return entrenchment
+
+def cost(divlist, tankera, IFVera, Infera, artera, AAera, ATera): #cost is a total of all units
+    cost = 0
+    era = 0 
+    actualcost = 0
+    for x in divlist:
+        if x == "Ta":
+            unit = "tank"
+        elif x == "IV":
+            unit = "IFV"
+        elif x == "In":
+            unit = "infantry"
+        elif x == "Ar":
+            unit = "artillery"
+        elif x == "AA":
+            unit = "AA"
+        elif x == "AT":
+            unit = "AT"
+        else:
+            unit = ""
+        if unit == "tank":
+            if tankera == "WW2":
+                era = 2
+            elif tankera == "CW":
+                era = 1
+            elif tankera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [0] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [0] ["list"] [era] ["era"] ["amount"]
+        elif unit == "IFV":
+            if IFVera == "WW2":
+                era = 2
+            elif IFVera == "CW":
+                era = 1
+            elif IFVera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [1] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [1] ["list"] [era] ["era"] ["amount"]
+        elif unit == "infantry":
+            if Infera == "WW2":
+                era = 2
+            elif Infera == "CW":
+                era = 1
+            elif Infera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [2] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [2] ["list"] [era] ["era"] ["amount"]
+        elif unit == "artillery":
+            if artera == "WW2":
+                era = 2
+            elif artera == "CW":
+                era = 1
+            elif artera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [3] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [3] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AA":
+            if AAera == "WW2":
+                era = 2
+            elif AAera == "CW":
+                era = 1
+            elif AAera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [4] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [4] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AT":
+            if ATera == "WW2":
+                era = 2
+            elif ATera == "CW":
+                era = 1
+            elif ATera == "Modern":
+                era = 0
+            cost = BCpath["battalion"] [5] ["list"] [era] ["era"] ["cost"]
+            actualcost += cost * Bpath["battalion"] [5] ["list"] [era] ["era"] ["amount"]
+        else:
+            cost += 0
+        
+    return actualcost
+
+def steel(divlist, tankera, IFVera, Infera, artera, AAera, ATera): #steel is a total of all units
+    steel = 0
+    era = 0 
+    actualsteel = 0
+    for x in divlist:
+        if x == "Ta":
+            unit = "tank"
+        elif x == "IV":
+            unit = "IFV"
+        elif x == "In":
+            unit = "infantry"
+        elif x == "Ar":
+            unit = "artillery"
+        elif x == "AA":
+            unit = "AA"
+        elif x == "AT":
+            unit = "AT"
+        else:
+            unit = ""
+        if unit == "tank":
+            if tankera == "WW2":
+                era = 2
+            elif tankera == "CW":
+                era = 1
+            elif tankera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [0] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [0] ["list"] [era] ["era"] ["amount"]
+        elif unit == "IFV":
+            if IFVera == "WW2":
+                era = 2
+            elif IFVera == "CW":
+                era = 1
+            elif IFVera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [1] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [1] ["list"] [era] ["era"] ["amount"]
+        elif unit == "infantry":
+            if Infera == "WW2":
+                era = 2
+            elif Infera == "CW":
+                era = 1
+            elif Infera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [2] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [2] ["list"] [era] ["era"] ["amount"]
+        elif unit == "artillery":
+            if artera == "WW2":
+                era = 2
+            elif artera == "CW":
+                era = 1
+            elif artera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [3] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [3] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AA":
+            if AAera == "WW2":
+                era = 2
+            elif AAera == "CW":
+                era = 1
+            elif AAera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [4] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [4] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AT":
+            if ATera == "WW2":
+                era = 2
+            elif ATera == "CW":
+                era = 1
+            elif ATera == "Modern":
+                era = 0
+            steel = BCpath["battalion"] [5] ["list"] [era] ["era"] ["steel"]
+            actualsteel += steel * Bpath["battalion"] [5] ["list"] [era] ["era"] ["amount"]
+        else:
+            steel += 0
+        
+    return actualsteel
+
+def copper (divlist, tankera, IFVera, Infera, artera, AAera, ATera): #copper is a total of all units
+    copper = 0
+    era = 0 
+    actualcopper = 0
+    for x in divlist:
+        if x == "Ta":
+            unit = "tank"
+        elif x == "IV":
+            unit = "IFV"
+        elif x == "In":
+            unit = "infantry"
+        elif x == "Ar":
+            unit = "artillery"
+        elif x == "AA":
+            unit = "AA"
+        elif x == "AT":
+            unit = "AT"
+        else:
+            unit = ""
+        if unit == "tank":
+            if tankera == "WW2":
+                era = 2
+            elif tankera == "CW":
+                era = 1
+            elif tankera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [0] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [0] ["list"] [era] ["era"] ["amount"]
+        elif unit == "IFV":
+            if IFVera == "WW2":
+                era = 2
+            elif IFVera == "CW":
+                era = 1
+            elif IFVera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [1] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [1] ["list"] [era] ["era"] ["amount"]
+        elif unit == "infantry":
+            if Infera == "WW2":
+                era = 2
+            elif Infera == "CW":
+                era = 1
+            elif Infera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [2] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [2] ["list"] [era] ["era"] ["amount"]
+        elif unit == "artillery":
+            if artera == "WW2":
+                era = 2
+            elif artera == "CW":
+                era = 1
+            elif artera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [3] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [3] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AA":
+            if AAera == "WW2":
+                era = 2
+            elif AAera == "CW":
+                era = 1
+            elif AAera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [4] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [4] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AT":
+            if ATera == "WW2":
+                era = 2
+            elif ATera == "CW":
+                era = 1
+            elif ATera == "Modern":
+                era = 0
+            copper = BCpath["battalion"] [5] ["list"] [era] ["era"] ["copper"]
+            actualcopper += copper * Bpath["battalion"] [5] ["list"] [era] ["era"] ["amount"]
+        else:
+            copper = 0
+
+    return actualcopper
+
+def oil (divlist, tankera, IFVera, Infera, artera, AAera, ATera): #oil is a total of all units
+    oil = 0
+    era = 0 
+    actualoil = 0
+    for x in divlist:
+        if x == "Ta":
+            unit = "tank"
+        elif x == "IV":
+            unit = "IFV"
+        elif x == "In":
+            unit = "infantry"
+        elif x == "Ar":
+            unit = "artillery"
+        elif x == "AA":
+            unit = "AA"
+        elif x == "AT":
+            unit = "AT"
+        else:
+            unit = ""
+        if unit == "tank":
+            if tankera == "WW2":
+                era = 2
+            elif tankera == "CW":
+                era = 1
+            elif tankera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [0] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [0] ["list"] [era] ["era"] ["amount"]
+        elif unit == "IFV":
+            if IFVera == "WW2":
+                era = 2
+            elif IFVera == "CW":
+                era = 1
+            elif IFVera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [1] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [1] ["list"] [era] ["era"] ["amount"]
+        elif unit == "infantry":
+            if Infera == "WW2":
+                era = 2
+            elif Infera == "CW":
+                era = 1
+            elif Infera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [2] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [2] ["list"] [era] ["era"] ["amount"]
+        elif unit == "artillery":
+            if artera == "WW2":
+                era = 2
+            elif artera == "CW":
+                era = 1
+            elif artera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [3] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [3] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AA":
+            if AAera == "WW2":
+                era = 2
+            elif AAera == "CW":
+                era = 1
+            elif AAera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [4] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [4] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AT":
+            if ATera == "WW2":
+                era = 2
+            elif ATera == "CW":
+                era = 1
+            elif ATera == "Modern":
+                era = 0
+            oil = BCpath["battalion"] [5] ["list"] [era] ["era"] ["oil"]
+            actualoil += oil * Bpath["battalion"] [5] ["list"] [era] ["era"] ["amount"]
+        else: 
+            oil = 0
+
+    return actualoil
+
+def rare(divlist, tankera, IFVera, Infera, artera, AAera, ATera): #rare metal cost is a total of all units
+    rare = 0
+    era = 0 
+    actualrare = 0
+    for x in divlist:
+        if x == "Ta":
+            unit = "tank"
+        elif x == "IV":
+            unit = "IFV"
+        elif x == "In":
+            unit = "infantry"
+        elif x == "Ar":
+            unit = "artillery"
+        elif x == "AA":
+            unit = "AA"
+        elif x == "AT":
+            unit = "AT"
+        else:
+            unit = ""
+        if unit == "tank":
+            if tankera == "WW2":
+                era = 2
+            elif tankera == "CW":
+                era = 1
+            elif tankera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [0] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [0] ["list"] [era] ["era"] ["amount"]
+        elif unit == "IFV":
+            if IFVera == "WW2":
+                era = 2
+            elif IFVera == "CW":
+                era = 1
+            elif IFVera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [1] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [1] ["list"] [era] ["era"] ["amount"]
+        elif unit == "infantry":
+            if Infera == "WW2":
+                era = 2
+            elif Infera == "CW":
+                era = 1
+            elif Infera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [2] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [2] ["list"] [era] ["era"] ["amount"]
+        elif unit == "artillery":
+            if artera == "WW2":
+                era = 2
+            elif artera == "CW":
+                era = 1
+            elif artera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [3] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [3] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AA":
+            if AAera == "WW2":
+                era = 2
+            elif AAera == "CW":
+                era = 1
+            elif AAera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [4] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [4] ["list"] [era] ["era"] ["amount"]
+        elif unit == "AT":
+            if ATera == "WW2":
+                era = 2
+            elif ATera == "CW":
+                era = 1
+            elif ATera == "Modern":
+                era = 0
+            rare = BCpath["battalion"] [5] ["list"] [era] ["era"] ["rare metals"]
+            actualrare += rare * Bpath["battalion"] [5] ["list"] [era] ["era"] ["amount"]
+        else:
+            rare = 0
+
+    return actualrare

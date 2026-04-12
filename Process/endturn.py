@@ -19,25 +19,43 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     coal = data ["coal"]
     iron = data ["iron"]
     steel = data ["steel"]
+    rawcopper = data ["raw copper"]
+    copper = data ["copper"]
+    oil = data ["oil"]
+    raremetals = data ["rare metals"]
+
 
     ironmine = data ["iron mine"]
     ironfoundry = data ["iron foundry"]
     coalmine = data ["coal mine"]
     steelmill = data ["steel mill"]
+    coppermine = data ["copper mine"]
+    copperfoundry = data ["copper foundry"]
+    pumpjack = data ["pumpjack"]
+    raremetalfoundry = data ["rare metal foundry"]
     
     rawironstart = rawiron
     coalstart = coal
     ironstart = iron
     steelstart = steel
+    rawcopperstart = rawcopper
+    copperstart = copper
+    oilstart = oil
+    raremetalsstart = raremetals
+
 
     #calculate coal needed, if not enough, then only mines will work for that turn and no industry will fire
-    coalneeded = ironfoundry + info ["type"] [3] ["details"] ["input"] ["coal"] * steelmill
+    coalneeded = ironfoundry + info ["type"] [3] ["details"] ["input"] ["coal"] * steelmill + raremetalfoundry * info ["type"] [6] ["details"] ["input"] ["coal"] + pumpjack * info ["type"] [7] ["details"] ["input"] ["coal"] + copperfoundry * info ["type"] [5] ["details"] ["input"] ["coal"]
+    rawcopperneeded = info ["type"] [5] ["details"] ["input"] ["raw copper"] * copperfoundry
     rawironneeded = info ["type"] [2] ["details"] ["output"] ["iron"] * ironfoundry
     ironneeded = info ["type"] [3] ["details"] ["input"] ["iron"] * steelmill
 
+
     #load raw resources first to enable proper usage of processing buildings
     rawiron = rawiron + (info ["type"] [1] ["details"] ["output"] ["raw iron"] * ironmine) #the 1 shows the index of the iron mine in "type"
+    rawcopper = rawcopper + (info ["type"] [5] ["details"] ["output"] ["raw copper"] * coppermine)
     coal = coal + (info ["type"] [0] ["details"] ["output"] ["coal"] * coalmine) 
+    
 
     if coal < coalneeded:
         print("there was not enough coal to fire your industry, but your mines still produced resources")
@@ -57,6 +75,13 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
         else:
             print("there was not enough iron to smelt in your steel mills...")
             time.sleep(2)
+        
+        if rawcopper >= rawcopperneeded:
+            copper = copper + (info ["type"] [5] ["details"] ["output"] ["copper"] * copperfoundry)
+            rawcopper = rawcopper - rawcopperneeded
+        else:
+            print("there was no ore to smelt in your copper foundries...")
+            time.sleep(2)
 
         coal = coal - coalneeded
 
@@ -66,17 +91,31 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     data ["raw iron"] = rawiron
     data ["coal"] = coal
     data ["steel"] = steel
+    data ["copper"] = copper
+    data ["raw copper"] = rawcopper
+    data ["oil"] = oil
+    data ["rare metals"] = raremetals
     Json.writejson (data, Path ("./json/save.json") , 2)
 
     ironchange = iron - ironstart
     rawironchange = rawiron - rawironstart
     coalchange = coal - coalstart
     steelchange = steel - steelstart
+    copperchange = copper - copperstart
+    rawcopperchange = rawcopper - rawcopperstart
+    oilchange = oil - oilstart
+    raremetalschange = raremetals - raremetalsstart
+
 
     print(f"coal change: {coalchange}")
     print(f"raw iron change: {rawironchange}")
     print(f"iron change: {ironchange}")
+    print(f"raw copper change: {rawcopperchange}")
+    print(f"copper change: {copperchange}")
     print(f"steel change: {steelchange}")
+    print(f"oil change: {oilchange}")
+    print(f"rare metals change: {raremetalschange}")
+
 
     return iron, rawiron, coal, steel
 

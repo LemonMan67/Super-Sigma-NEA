@@ -6,7 +6,7 @@
       {
       "era" : {
         "type" : "modern",
-        "cost" : 10000,
+        "cost" : 1000,
         "steel" : 100,
         "copper" : 50,
         "rare metals" : 25,
@@ -16,7 +16,7 @@
       {
       "era" : {
         "type" : "CW",
-        "cost" : 2500,
+        "cost" : 750,
         "steel" : 100,
         "copper" : 50,
         "rare metals" : 10,
@@ -27,7 +27,7 @@
       { 
       "era" :{
         "type" : "WW2",
-        "cost" : 750,
+        "cost" : 150,
         "steel" : 10,
         "copper" : 5,
         "rare metals" : 1,
@@ -67,10 +67,11 @@
       { 
       "era" :{
         "type" : "WW2",
-        "cost" : 25,
+        "cost" : 50,
         "steel" : 10,
         "copper" : 5,
-        "oil" : 1
+        "oil" : 1,
+        "rare metals" : 0
 
         }
       }
@@ -84,8 +85,10 @@
       "era" : {
         "type" : "modern",
         "cost" : 25,
-        "steel" : 10,
-        "copper" : 15
+        "steel" : 5,
+        "copper" : 8,
+        "rare metals" : 0,
+        "oil" : 0
 
         }
       },
@@ -94,7 +97,9 @@
         "type" : "CW",
         "cost" : 8,
         "steel" : 5,
-        "copper" : 5
+        "copper" : 5,
+        "rare metals" : 0,
+        "oil" : 0
 
         }
       },
@@ -102,7 +107,10 @@
       "era" :{
         "type" : "WW2",
         "cost" : 2,
-        "steel" : 2
+        "steel" : 1,
+        "copper" : 0,
+        "rare metals" : 0,
+        "oil" : 0
 
         }
       }
@@ -130,7 +138,8 @@
         "steel" : 25,
         "copper" : 10,
         "rare metals" : 5,
-        "cost" : 100
+        "oil" : 0,
+        "cost" : 75
 
 
         }
@@ -139,7 +148,10 @@
       "era" :{
         "type" : "WW2",
         "steel" : 10,
-        "cost" : 50
+        "copper" : 0,
+        "rare metals" : 0,
+        "oil" : 0,
+        "cost" : 30
 
         }
       }
@@ -155,6 +167,7 @@
         "steel" : 10,
         "copper" : 15,
         "rare metals" : 5,
+        "oil" : 0,
         "cost" : 50
 
         }
@@ -166,17 +179,18 @@
         "copper" : 25,
         "rare metals" : 10,
         "oil" : 20,
-        "cost" : 1000
+        "cost" : 400
 
         }
       },
       { 
       "era" :{
         "type" : "WW2",
-        "cost" : 500,
+        "cost" : 100,
         "steel" : 50,
         "copper" : 20,
-        "oil" : 10
+        "oil" : 10,
+        "rare metals" : 0
         }
       }
      ]
@@ -193,7 +207,7 @@
         "copper" : 100,
         "rare metals" : 25,
         "oil" : 50,
-        "cost" : 5000
+        "cost" : 750
 
         }
       },
@@ -204,7 +218,7 @@
         "copper" : 50,
         "rare metals" : 25,
         "oil" : 20,
-        "cost" : 500
+        "cost" : 200
 
         }
       },
@@ -212,7 +226,11 @@
       "era" :{
         "type" : "WW2",
         "steel" : 10,
-        "cost" : 50
+        "copper" : 0,
+        "rare metals" : 0,
+        "oil" : 0,
+        "cost" : 20
+
 
         }
       }

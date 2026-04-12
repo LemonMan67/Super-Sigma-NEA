@@ -74,6 +74,30 @@
         },
         "cost": 300
       }
+    },
+    {
+      "details": {
+        "building": "rare metal foundry",
+        "output": {
+          "raremetals": 1
+        },
+        "input": {
+          "coal": 1
+        },
+        "cost": 5000
+      }
+    },
+    {
+      "details": {
+        "building": "pumpjack",
+        "output": {
+          "oil": 2
+        },
+        "input": {
+          "coal": 10
+        },
+        "cost": 1000
+      }
     }
   ]
 }
