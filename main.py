@@ -5,6 +5,7 @@ from Process import endturn
 from Process import Json
 from Process import function
 from Process import statcalc 
+from Process import enemycalc
 
 #change values in battlalion json file
 
@@ -287,6 +288,18 @@ class Load:
 
 class Enemy:
    def __init__(self):
+      self.savepath = Path ("./json/save.json")
+      self.save = Json.loadjson (self.savepath)
+
+      self.zone = self.save ["zone"]
+      self.initialhp = enemycalc.hp(self.zone)
+      self.initialattack = enemycalc.attack(self.zone)
+      self.initialorg = enemycalc.org(self.zone)
+      self.initialdefense = enemycalc.defense(self.zone)
+      self.initialbreakthrough = enemycalc.breakthrough(self.zone)
+      self.initialpierce = enemycalc.pierce(self.zone)
+      self.initialarmour = enemycalc.armour(self.zone)
+      self.initialentrenchment = enemycalc.entrenchment(self.zone)
       self.hp = int(0)
       self.attack = int(0)
       self.org = int(0)
@@ -294,19 +307,116 @@ class Enemy:
       self.breakthrough = int(0)
       self.pierce = int(0)
       self.armour = int(0)
-      self.AA = int(0)
-      self.recon = int(0)
       self.entrenchment = int(0)
+   
+   def loadcurrentstats (self):
+      if self.save ["enemyjustmade"] == 1:
+         self.hp = self.initialhp
+         self.attack = self.initialattack
+         self.org = self.initialorg
+         self.defense = self.initialdefense
+         self.breakthrough = self.initialbreakthrough
+         self.pierce = self.initialpierce
+         self.armour = self.initialarmour
+         self.entrenchment = self.initialentrenchment
+         self.save ["enemyhp"] = self.hp
+         self.save ["enemyattack"] = self.attack
+         self.save ["enemyorg"] = self.org
+         self.save ["enemydefense"] = self.defense
+         self.save ["enemybreakthrough"] = self.breakthrough
+         self.save ["enemypierce"] = self.pierce
+         self.save ["enemyarmour"] = self.armour
+         self.save ["enemyentrenchment"] = self.entrenchment
+         self.save ["enemyjustmade"] = 0
+         Json.writejson (self.save, self.savepath , 2)
+      else:
+         self.hp = self.save ["enemyhp"]
+         self.attack = self.save ["enemyattack"]
+         self.org = self.save ["enemyorg"]
+         self.defense = self.save ["enemydefense"]
+         self.breakthrough = self.save ["enemybreakthrough"]
+         self.pierce = self.save ["enemypierce"]
+         self.armour = self.save ["enemyarmour"]
+         self.entrenchment = self.save ["enemyentrenchment"]
 
+class Combatdivision(Division):
+   def __init__(self):
+      super().__init__()
+      self.divstat()  # Calculate stats before copying them
+      self.savepath = Path ("./json/save.json")
+      self.save = Json.loadjson (self.savepath)
+
+      self.initialhp = self.hp
+      self.initialattack = self.attack
+      self.initialorg = self.org
+      self.initialdefense = self.defense
+      self.initialbreakthrough = self.breakthrough
+      self.initialpierce = self.pierce
+      self.initialarmour = self.armour
+      self.initialAA = self.AA
+      self.initialrecon = self.recon
+      self.initialentrenchment = self.entrenchment
+      self.dhp = int(0)
+      self.dattack = int(0)
+      self.dorg = int(0)
+      self.ddefense = int(0)
+      self.dbreakthrough = int(0)
+      self.dpierce = int(0)
+      self.darmour = int(0)
+      self.dAA = int(0)
+      self.drecon = int(0)
+      self.dentrenchment = int(0)
+   
+   def loadcurrentstats (self):
+      if self.save ["divisionjustmade"] == 1:
+         self.dhp = self.initialhp
+         self.dattack = self.initialattack
+         self.dorg = self.initialorg
+         self.ddefense = self.initialdefense
+         self.dbreakthrough = self.initialbreakthrough
+         self.dpierce = self.initialpierce
+         self.darmour = self.initialarmour
+         self.dAA = self.initialAA
+         self.drecon = self.initialrecon
+         self.dentrenchment = self.initialentrenchment
+         self.save ["divisionhp"] = self.dhp
+         self.save ["divisionattack"] = self.dattack
+         self.save ["divisionorg"] = self.dorg
+         self.save ["divisiondefense"] = self.ddefense
+         self.save ["divisionbreakthrough"] = self.dbreakthrough
+         self.save ["divisionpierce"] = self.dpierce
+         self.save ["divisionarmour"] = self.darmour
+         self.save ["divisionrecon"] = self.drecon
+         self.save ["divisionAA"] = self.dAA
+         self.save ["divisionentrenchment"] = self.dentrenchment
+         self.save ["divisionjustmade"] = 0
+         Json.writejson (self.save, self.savepath , 2)
+      else:
+         self.dhp = self.save ["divisionhp"]
+         self.dattack = self.save ["divisionattack"]
+         self.dorg = self.save ["divisionorg"]
+         self.ddefense = self.save ["divisiondefense"]
+         self.dbreakthrough = self.save ["divisionbreakthrough"]
+         self.dpierce = self.save ["divisionpierce"]
+         self.darmour = self.save ["divisionarmour"]
+         self.dAA = self.save ["divisionAA"]
+         self.drecon = self.save ["divisionrecon"]
+         self.dentrenchment = self.save ["divisionentrenchment"]
+      
+
+
+combatdivision = Combatdivision()
+division = Division()
 enemy = Enemy()
 load = Load()
 building = Building()
-division = Division()
 
+division.divstat()
+combatdivision.loadcurrentstats()
+enemy.loadcurrentstats()
 
 repeatmenu = 1
 menu = "0"
-
 #main menu loop - where the player selects what to do
 
 while repeatmenu == 1:
@@ -318,6 +428,18 @@ while repeatmenu == 1:
       print("3:  division designer")
       print("4 : end turn                      current turn = ", load.counter) 
       print("5 : exit")
+      print("\n\n/////////////////////------Battle Overview------/////////////////////")
+      print("\nyour division:                                  enemy division:")
+      print(f"  {combatdivision.hp} hp                                              {enemy.hp} hp")
+      print(f"  {combatdivision.org} org                                             {enemy.org} org")
+      print(f"  {combatdivision.attack} attack                                          {enemy.attack} attack")
+      print(f"  {combatdivision.defense} defense                                         {enemy.defense} defense")
+      print(f"  {combatdivision.breakthrough} breakthrough                                    {enemy.breakthrough} breakthrough")
+      print(f"  {combatdivision.pierce} pierce                                          {enemy.pierce} pierce")
+      print(f"  {combatdivision.armour} armour                                          {enemy.armour} armour")
+      print(f"  {combatdivision.AA} AA")
+      print(f"  {combatdivision.recon} recon")
+      print(f"  {combatdivision.entrenchment} entrenchment                                    {enemy.entrenchment} entrenchment")
       menu = input ("\nselect menu: ")
       
    elif menu == "1":
@@ -333,6 +455,7 @@ while repeatmenu == 1:
              build = Json.loadjson ("./json/building.json")
              count = Json.loadjson ("./json/save.json")
              #these lines state a building, amount owned, production rate and needs - only prints buildings like copper mines if unlocked
+             #this couldve been much easier on the eyes if i understood OOP better at the time - i am NOT changing it 
              print(f"current money: {load.money}\n")
              print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    
              print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/turn,   {build["type"][1]["details"]["cost"]} cost")
@@ -453,6 +576,8 @@ while repeatmenu == 1:
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
       time.sleep(4)
       endturn.unlock()
+      division.reload()
+      division.divstat()
       endturn.divcreate(division.cost , division.steel , division.copper , division.rare , division.oil)
       
       menu = "0"  

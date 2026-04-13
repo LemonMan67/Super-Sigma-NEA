@@ -133,48 +133,56 @@ def unlock():
 def divcreate(cost , steel , copper , raremetals , oil):
     os.system('cls' if os.name == 'nt' else 'clear')
     data = Json.loadjson (Path ("./json/save.json"))
-    div = 0
+    if data ["divisionmade"] == 0:
+      
+      div = 0
+      moneyhad = data ["money"]
+      steelhad = data ["steel"]
+      copperhad = data ["copper"]     #save file rescources
+      raremetalshad = data ["rare metals"]
+      oilhad = data ["oil"]
+      print(moneyhad , cost)
+      print(steelhad, steel)
+      print(copperhad , copper)
+      print(raremetalshad , raremetals) 
+      print(oilhad , oil)
+  
+      if moneyhad >= cost:
+          div = div + 1
+      else:
+          print("not enough money to create division")
     
-    moneyhad = data ["money"]
-    steelhad = data ["steel"]
-    copperhad = data ["copper"]     #save file rescources
-    raremetalshad = data ["rare metals"]
-    oilhad = data ["oil"]
-
-    if moneyhad <= cost:
-        div = div + 1
-    else:
-        print("not enough money to create division")
+      if steelhad >= steel:
+          div += 1
+      else:
+          print("not enough steel to create division")
     
-    if steelhad <= steel:
-        div += 1
-    else:
-        print("not enough steel to create division")
+      if copperhad >= copper:
+          div += 1
+      else:
+          print("not enough copper to create division")
+  
+      if raremetalshad >= raremetals:
+          div += 1
+      else:
+          print("not enough rare metals to create division")
+   
+      if oilhad >= oil:
+          div += 1
+      else:
+          print("not enough oil to create division")
     
-    if copperhad <= copper:
-        div += 1
-    else:
-        print("not enough copper to create division")
-
-    if raremetalshad <= raremetals:
-        div += 1
-    else:
-        print("not enough rare metals to create division")
-
-    if oilhad <= oil:
-        div += 1
-    else:
-        print("not enough oil to create division")
-    
-    if div == 5:
-        print("division created")
-        data ["money"] = moneyhad - cost
-        data ["steel"] = steelhad - steel
-        data ["copper"] = copperhad - copper
-        data ["rare metals"] = raremetalshad - raremetals
-        data ["oil"] = oilhad - oil
-        Json.writejson (data, Path ("./json/save.json") , 2)
-    time.sleep(2)
+      if div == 5:
+          print("division created")
+          data ["money"] = moneyhad - cost
+          data ["steel"] = steelhad - steel
+          data ["copper"] = copperhad - copper
+          data ["rare metals"] = raremetalshad - raremetals
+          data ["oil"] = oilhad - oil
+          data ["divisionmade"] = 1
+          data ["divisionjustmade"] = 1
+          Json.writejson (data, Path ("./json/save.json") , 2)
+      time.sleep(5)
     
 
 
