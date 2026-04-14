@@ -141,11 +141,6 @@ def divcreate(cost , steel , copper , raremetals , oil):
       copperhad = data ["copper"]     #save file rescources
       raremetalshad = data ["rare metals"]
       oilhad = data ["oil"]
-      print(moneyhad , cost)
-      print(steelhad, steel)
-      print(copperhad , copper)
-      print(raremetalshad , raremetals) 
-      print(oilhad , oil)
   
       if moneyhad >= cost:
           div = div + 1
@@ -179,8 +174,8 @@ def divcreate(cost , steel , copper , raremetals , oil):
           data ["copper"] = copperhad - copper
           data ["rare metals"] = raremetalshad - raremetals
           data ["oil"] = oilhad - oil
-          data ["divisionmade"] = 1
-          data ["divisionjustmade"] = 1
+          data ["divisionmade"] = 1 #sets the division to be alive - when this is 0 , it allows for a new division to be made 
+          data ["divisionjustmade"] = 1   #setting this to one allows for the stats of a new division to be loaded into the division object - it is set to 0 then
           Json.writejson (data, Path ("./json/save.json") , 2)
       time.sleep(5)
     

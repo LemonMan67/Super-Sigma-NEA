@@ -1,9 +1,12 @@
-import Json
+from . import Json
 from pathlib import Path
+import math
 
 
 savepath = Path ("./json/save.json")
 save = Json.loadjson (savepath)
+
+#both divisions will fight full power for that turn - stat penalties applied after combat happens
 
 
 def combatdef(defense, entrenchment, recon):
@@ -39,5 +42,86 @@ def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   breakthrough = orgmult * Ibreak
 
   return attack , defense , breakthrough
+
+def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , opporg , oppdefense , opparmour , oppentrenchment):   #player fights enemy unit 
+
+  attack = combatatt(attack , entrenchment , 0) #enemies have no recon stat , putting in 0 here ensures they get no recon bonuses
+  oppdefense = combatdef(oppdefense , oppentrenchment , recon)
+
+  if pierce > opparmour:
+    attack = attack #unchanged duhh
+  elif pierce < opparmour and pierce > 0.5 * opparmour:
+    attack = attack * 0.7
+  else:
+    attack = attack * 0.4
+
+  if attack > 2 * oppdefense:  #if the enemy is low on defense for any reason - do 3x damage
+    attack = attack * 3
+
+  damage = attack / ((10 * oppdefense) * (1 / breakthrough))
+  damage = math.trunc(damage)
+  opphp = opphp - damage
+
+  orgdamage = breakthrough / oppdefense 
+  orgdamage = math.trunc(orgdamage)
+  opporg = opporg - orgdamage
+
+  if opporg < 0:
+    opporg = 0
+
+  if opphp < 1:
+    save ["enemyjustmade"] = 1
+    zone = save ["zone"]
+    zone = zone + 1
+    save ["zone"] = zone
+    reward = 100 * (zone ** 1.1)
+    cuurentmoney = save["money"]
+    money = cuurentmoney + reward
+    save ["money"] = money
+    print ("the enemy has been overrun!")
+    print (f"we have earned {reward} money from the enemy!")
+  else:
+    print(f"we dealt {damage} damage to the enemy and {orgdamage} org damage")
+    save ["enemyhp"] = opphp
+    save ["enemyorg"] = opporg
+  Json.writejson(save , savepath , 2)
+
+
+def enemyfight(attack , breakthrough , pierce ,  entrenchment , opphp , opporg , oppdefense , opparmour , recon , oppentrenchment):   #enemy unit fights player
+
+  attack = combatatt(attack , entrenchment , recon)
+  oppdefense = combatdef(oppdefense , oppentrenchment , 0) #enemies have no recon stat , putting in 0 here ensures they get no recon bonuses
+
+  if pierce > opparmour:
+    attack = attack #unchanged duhh
+  elif pierce < opparmour and pierce > 0.5 * opparmour:
+    attack = attack * 0.7
+  else:
+    attack = attack * 0.4
+
+  if attack > 2 * oppdefense:  #if the enemy is low on defense for any reason - do 3x damage
+    attack = attack * 3
+
+  damage = attack / ((10 * oppdefense) * (1 / breakthrough))
+  damage = math.trunc(damage)
+  opphp = opphp - damage
+
+  orgdamage = breakthrough / oppdefense 
+  orgdamage = math.trunc(orgdamage)
+  opporg = opporg - orgdamage
+
+  if opporg < 0:
+    opporg = 0
+
+  if opphp < 1:
+    save["divisionmade"] = 0
+    print ("our forces have been defeated!")
+  else:
+    print(f"they dealt {damage} damage to us and {orgdamage} org damage")
+    save ["divisionhp"] = opphp
+    save ["divisionorg"] = opporg
+  Json.writejson(save , savepath , 2)
+
+
   
 

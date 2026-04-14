@@ -6,6 +6,7 @@ from Process import Json
 from Process import function
 from Process import statcalc 
 from Process import enemycalc
+from Process import combat
 
 #change values in battlalion json file
 
@@ -339,6 +340,13 @@ class Enemy:
          self.armour = self.save ["enemyarmour"]
          self.entrenchment = self.save ["enemyentrenchment"]
 
+   def damagedstats(self):
+      self.attack , self.defense , self.breakthrough = combat.enemyorgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
+      self.save["enemyattack"] = self.attack
+      self.save["enemydefense"] = self.defense
+      self.save["enemybreakthrough"] = self.breakthrough
+      Json.writejson(self.save , self.savepath)
+
 class Combatdivision(Division):
    def __init__(self):
       super().__init__()
@@ -402,6 +410,13 @@ class Combatdivision(Division):
          self.dAA = self.save ["divisionAA"]
          self.drecon = self.save ["divisionrecon"]
          self.dentrenchment = self.save ["divisionentrenchment"]
+
+   def damagedstats(self):
+      self.dattack , self.ddefense , self.dbreakthrough = combat.orgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
+      self.save["divisionattack"] = self.dattack
+      self.save["divisiondefense"] = self.ddefense
+      self.save["divisionbreakthrough"] = self.dbreakthrough
+      Json.writejson(self.save , self.savepath , 2)
       
 
 
@@ -429,6 +444,7 @@ while repeatmenu == 1:
       print("4 : end turn                      current turn = ", load.counter) 
       print("5 : exit")
       print("\n\n/////////////////////------Battle Overview------/////////////////////")
+      print(f"\nyou are on zone {enemy.zone}")
       print("\nyour division:                                  enemy division:")
       print(f"  {combatdivision.hp} hp                                              {enemy.hp} hp")
       print(f"  {combatdivision.org} org                                             {enemy.org} org")
@@ -574,12 +590,38 @@ while repeatmenu == 1:
       print("ending turn...")
       load.counter = endturn.buh(load.counter)
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
-      time.sleep(4)
+      time.sleep(3)
       endturn.unlock()
+
+      savepath = Path ("./json/save.json")
+      save =Json.loadjson (savepath)
+      if save ["divisionmade"] ==  1:
+        combatdivision.loadcurrentstats
+        enemy.loadcurrentstats
+        combat.divfight(combatdivision.attack , combatdivision.breakthrough , combatdivision.pierce , combatdivision.recon , combatdivision.entrenchment , enemy.hp , enemy.org  , enemy.defense  , enemy.armour , enemy.entrenchment)
+        combat.enemyfight(enemy.attack , enemy.breakthrough , enemy.pierce  , enemy.entrenchment, combatdivision.hp ,combatdivision.org  , combatdivision.defense ,  combatdivision.armour, combatdivision.recon , combatdivision.entrenchment)
+
+        combatdivision.loadcurrentstats
+        enemy.loadcurrentstats
+        combatdivision.damagedstats   #after combat happens, the new hp and org of both is saved and overwrites the old values , the new damage defense and breakthrough values based on org loss are found and then too overwrites these over the old values for those stats
+        enemy.damagedstats
+        combatdivision.loadcurrentstats
+        enemy.loadcurrentstats
+        time.sleep(3)
+
       division.reload()
       division.divstat()
       endturn.divcreate(division.cost , division.steel , division.copper , division.rare , division.oil)
-      
+
+      if save ["enemyjustmade"] == 1:
+         save ["enemyjustmade"] = 0 
+         Json.writejson(save , savepath , 2)
+
+
+
+
+
+
       menu = "0"  
 
    elif menu == "5":
@@ -593,7 +635,7 @@ while repeatmenu == 1:
      time.sleep(2)
      menu = "0"
 
- #when adding new rescources, edit all appearances of rescource in code, so endturn.rescouce , sellrescource, and rescource interactions
       
         
     
+
