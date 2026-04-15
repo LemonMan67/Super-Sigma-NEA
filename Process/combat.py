@@ -4,7 +4,6 @@ import math
 
 
 savepath = Path ("./json/save.json")
-save = Json.loadjson (savepath)
 
 #both divisions will fight full power for that turn - stat penalties applied after combat happens
 
@@ -22,7 +21,9 @@ def combatatt(attack, entrenchment, recon):
   return attack
 
 def orgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
-  
+
+  save = Json.loadjson (savepath)
+
   Corg = save["divisionorg"]  #current org
   orgmult = (Corg / Iorg) ** 2
 
@@ -44,7 +45,9 @@ def orgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   return attack , defense , breakthrough
 
 def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
-  
+
+  save = Json.loadjson (savepath)
+
   Corg = save["enemyorg"]  #current org
   orgmult = (Corg / Iorg) ** 2
 
@@ -59,9 +62,15 @@ def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   if breakthrough < 0.1 * Ibreak:
     breakthrough = 0.1 * Ibreak
 
+  attack = math.trunc(attack)
+  defense = math.trunc(defense)
+  breakthrough = math.trunc(breakthrough)
+
   return attack , defense , breakthrough
 
 def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , opporg , oppdefense , opparmour , oppentrenchment):   #player fights enemy unit 
+
+  save = Json.loadjson (savepath)
 
   attack = combatatt(attack , entrenchment , 0) #enemies have no recon stat , putting in 0 here ensures they get no recon bonuses
   oppdefense = combatdef(oppdefense , oppentrenchment , recon)
@@ -84,8 +93,16 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
   orgdamage = math.trunc(orgdamage)
   opporg = opporg - orgdamage
 
+  if orgdamage < 1:   #orgdamage doesnt fall below 1, so you can always deal at least something to the enemy
+      opporg = opporg - 1
+      orgdamage = 1
+
   if opporg < 0:
     opporg = 0
+
+  if opporg == 0:     #the enemy takes more damage when their org is completely depleted to speed up turns
+      opphp = opphp - (damage + (orgdamage / 3))
+      opphp = math.trunc(opphp)
 
   if opphp < 1:
     zone = 0
@@ -110,6 +127,8 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
 
 def enemyfight(attack , breakthrough , pierce ,  entrenchment , opphp , opporg , oppdefense , opparmour , recon , oppentrenchment):   #enemy unit fights player
 
+  save = Json.loadjson (savepath)
+
   attack = combatatt(attack , entrenchment , recon)
   oppdefense = combatdef(oppdefense , oppentrenchment , 0) #enemies have no recon stat , putting in 0 here ensures they get no recon bonuses
 
@@ -122,17 +141,26 @@ def enemyfight(attack , breakthrough , pierce ,  entrenchment , opphp , opporg ,
 
   if attack > 2 * oppdefense:  #if the enemy is low on defense for any reason - do 3x damage
     attack = attack * 3
+
   if save["enemyjustmade"] == 0:
-    damage = attack / ((10 * oppdefense) * (1 / breakthrough))
+    damage = attack / ((10 * oppdefense) * (1 / breakthrough))   #calculate damage done
     damage = math.trunc(damage)
     opphp = opphp - damage
 
-    orgdamage = breakthrough / oppdefense 
+    orgdamage = breakthrough / oppdefense   #calculate org damage done
     orgdamage = math.trunc(orgdamage)
     opporg = opporg - orgdamage
 
-    if opporg < 0:
+    if orgdamage < 1:   #orgdamage doesnt fall below 1, so you can always deal at least something to the enemy
+      opporg = opporg - 1
+      orgdamage = 1
+
+    if opporg < 0:   #dont let org become negative
       opporg = 0
+    
+    if opporg == 0:     #the enemy takes more damage when their org is completely depleted to speed up turns
+      opphp = opphp - (damage + (orgdamage / 3))
+      opphp = math.trunc(opphp)
 
     if opphp < 1:
       save["divisionmade"] = 0

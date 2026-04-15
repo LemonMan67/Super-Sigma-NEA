@@ -17,13 +17,13 @@ def attack (zone):
       zone = zone
       thingy = math.pow(0.9, zone-49)
       mult = (math.pow(math.e, 0.15 * zone) + math.pow(math.e, 0.1 * zone)) * thingy
-      attack = 10 + 5 * mult
+      attack = 100 + 5 * mult
       attack = math.trunc(attack)
       return attack
     else:    #simulates artillery bveing added
       zone = zone
       mult = (math.pow(math.e, 0.125 * zone) + math.pow(math.e, 0.1 * zone))
-      attack = 10 + 5 * mult
+      attack = 40 + 5 * mult
       attack = math.trunc(attack)
       return attack
 

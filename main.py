@@ -241,31 +241,84 @@ class Building:
                      self.data["type"][7]["details"]["cost"] = cost
                      Json.writejson (self.data, self.path , 2)
 
-      else:
-        print("invalid building name")
-        time.sleep(2)
+   def upgradebuilding(self , buildingname , change):  # pretend building name is what is being channged
+         if self.money >=  int ( save[change]):
+               self.money -= int ( save[change])
+               load.money = self.money
+               self.save ["money"] = self.money
+               if buildingname == "iron mine":        
+                     self.save["iron mine upg cost"] = self.save["iron mine upg cost"] * 5
+                     self.data["type"][1]["details"]["output"]["raw iron"] = self.data["type"][1]["details"]["output"]["raw iron"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+
+               elif buildingname == "iron foundry":         
+                     self.save["iron foundry upg cost"] = self.save["iron foundry upg cost"] * 5
+                     self.data["type"][2]["details"]["output"]["iron"] = self.data["type"][2]["details"]["output"]["iron"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+               
+               elif buildingname == "copper mine":
+                     self.save["copper mine upg cost"] = self.save["copper mine upg cost"] * 5
+                     self.data["type"][4]["details"]["output"]["raw copper"] = self.data["type"][4]["details"]["output"]["raw copper"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+               
+               elif buildingname == "copper foundry":
+                     self.save["copper foundry upg cost"] = self.save["copper foundry upg cost"] * 5
+                     self.data["type"][5]["details"]["output"]["rawiron"] = self.data["type"][5]["details"]["output"]["rawiron"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+
+               elif buildingname == "coal mine":
+                     self.save["coal mine upg cost"] = self.save["coal mine upg cost"] * 5
+                     self.data["type"][0]["details"]["output"]["coal"] = self.data["type"][0]["details"]["output"]["coal"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+
+               elif buildingname == "steel mill":
+                     self.save["steel mill upg cost"] = self.save["steel mill upg cost"] * 5
+                     self.data["type"][3]["details"]["output"]["steel"] = self.data["type"][3]["details"]["output"]["steel"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+               
+               elif buildingname == "rare metal foundry":
+                     self.save["rare metals upg cost"] = self.save["rare metals upg cost"] * 5
+                     self.data["type"][6]["details"]["output"]["raremetals"] = self.data["type"][6]["details"]["output"]["raremetals"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+
+               elif buildingname == "pumpjack":
+                     self.save["pumpjack upg cost"] = self.save["pumpjack upg cost"] * 5
+                     self.data["type"][7]["details"]["output"]["oil"] = self.data["type"][7]["details"]["output"]["oil"] * 2
+                     Json.writejson (self.data, self.path , 2)
+                     Json.writejson (self.save, self.savepath , 2)
+
+
+         else:
+             print("ur too broke")
+             time.sleep(2)
    
    def sellrescource (self , rescourcename , amount ):
       if rescourcename == "iron": #differnt prices for different rescources can be added here
          sellprice = 2
-      if rescourcename == "steel":
+      elif rescourcename == "steel":
          sellprice = 5
-      if rescourcename == "copper":
+      elif rescourcename == "copper":
          sellprice = 3
-      if rescourcename == "rare metals":
+      elif rescourcename == "rare metals" :
          sellprice = 15
-      if rescourcename == "oil":
+      elif rescourcename == "oil":
          sellprice = 25
       else:
          sellprice = 0
       amount = int (amount)
-      print(rescourcename, amount, sellprice)
-      cont = input("test")
       while True:   
         if amount <= self.save [rescourcename]: 
-           self.money += sellprice * amount
+           self.save = Json.loadjson (self.savepath)
+           self.save["money"] += (sellprice * amount)
+           self.money = self.save["money"]
            self.save [rescourcename] -= amount
-           self.save ["money"] = self.money
            Json.writejson (self.save, self.savepath , 2)
            load.money = self.money
         else:
@@ -291,6 +344,17 @@ class Load:
    def moneyupd(self):
      self.money = self.data ["money"]
 
+   def reload(self):
+        self.counter = self.data["counter"]
+        self.money = self.data["money"]
+        self.zone = self.data["zone"]
+        self.rawiron = self.data["raw iron"]
+        self.iron = self.data["iron"]
+        self.coal = self.data["coal"]
+        self.ironmine = self.data["iron mine"]
+        self.ironfoundry = self.data["iron foundry"]
+        self.coalmine = self.data["coal mine"]
+
 
 class Enemy:
    def __init__(self):
@@ -315,39 +379,49 @@ class Enemy:
       self.armour = int(0)
       self.entrenchment = int(0)
    
-   def loadinitialstats (self):
-      if self.save ["enemyjustmade"] == 1:
+   def loadinitialstats(self):
+      self.save = Json.loadjson(self.savepath)
+      if self.save["enemyjustmade"] == 1:
+         # recalculate initial stats based on current zone
+         self.zone = self.save["zone"]
+         self.initialhp = enemycalc.hp(self.zone)
+         self.initialattack = enemycalc.attack(self.zone)
+         self.initialorg = enemycalc.org(self.zone)
+         self.initialdefense = enemycalc.defense(self.zone)
+         self.initialbreakthrough = enemycalc.breakthrough(self.zone)
+         self.initialpierce = enemycalc.pierce(self.zone)
+         self.initialarmour = enemycalc.armour(self.zone)
+         self.initialentrenchment = enemycalc.entrenchment(self.zone)
          self.hp = self.initialhp
          self.attack = self.initialattack
          self.org = self.initialorg
-         self.defense = self.initialdefense
+         self.defense = self.initialdefense  
          self.breakthrough = self.initialbreakthrough
          self.pierce = self.initialpierce
          self.armour = self.initialarmour
          self.entrenchment = self.initialentrenchment
-         self.save ["enemyhp"] = self.hp
-         self.save ["enemyattack"] = self.attack
-         self.save ["enemyorg"] = self.org
-         self.save ["enemydefense"] = self.defense
-         self.save ["enemybreakthrough"] = self.breakthrough
-         self.save ["enemypierce"] = self.pierce
-         self.save ["enemyarmour"] = self.armour
-         self.save ["enemyentrenchment"] = self.entrenchment
-         self.save ["enemyjustmade"] = 0
-         Json.writejson (self.save, self.savepath , 2)
-
-   def loadcurrentstats(self):
-         if self.save ["enemyjustmade"] == 0:
-           self.hp = self.save ["enemyhp"]
-           self.attack = self.save ["enemyattack"]
-           self.org = self.save ["enemyorg"]
-           self.defense = self.save ["enemydefense"]
-           self.breakthrough = self.save ["enemybreakthrough"]
-           self.pierce = self.save ["enemypierce"]
-           self.armour = self.save ["enemyarmour"]
-           self.entrenchment = self.save ["enemyentrenchment"]
+         self.save["enemyhp"] = self.hp
+         self.save["enemyattack"] = self.attack
+         self.save["enemyorg"] = self.org
+         self.save["enemydefense"] = self.defense
+         self.save["enemybreakthrough"] = self.breakthrough
+         self.save["enemypierce"] = self.pierce
+         self.save["enemyarmour"] = self.armour
+         self.save["enemyentrenchment"] = self.entrenchment
+         self.save["enemyjustmade"] = 0
+         Json.writejson(self.save, self.savepath, 2)
+      else:
+         self.hp = self.save["enemyhp"]
+         self.attack = self.save["enemyattack"]
+         self.org = self.save["enemyorg"]
+         self.defense = self.save["enemydefense"]
+         self.breakthrough = self.save["enemybreakthrough"]
+         self.pierce = self.save["enemypierce"]
+         self.armour = self.save["enemyarmour"]
+         self.entrenchment = self.save["enemyentrenchment"]
 
    def damagedstats(self):
+      self.save = Json.loadjson (self.savepath)
       self.attack , self.defense , self.breakthrough = combat.enemyorgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
       self.save["enemyattack"] = self.attack
       self.save["enemydefense"] = self.defense
@@ -386,6 +460,7 @@ class Combatdivision(Division):
       self.dentrenchment = int(0)
    
    def loadinitialstats (self):
+      self.save = Json.loadjson (self.savepath)
       if self.save ["divisionjustmade"] == 1:
          self.divstat()
          self.dhp = self.initialhp
@@ -410,21 +485,20 @@ class Combatdivision(Division):
          self.save ["divisionentrenchment"] = self.dentrenchment
          self.save ["divisionjustmade"] = 0
          Json.writejson (self.save, self.savepath , 2)
-
-   def loadcurrentstats(self):
-         if self.save ["divisionjustmade"] == 0:
-           self.dhp = self.save ["divisionhp"]
-           self.dattack = self.save ["divisionattack"]
-           self.dorg = self.save ["divisionorg"]
-           self.ddefense = self.save ["divisiondefense"]
-           self.dbreakthrough = self.save ["divisionbreakthrough"]
-           self.dpierce = self.save ["divisionpierce"]
-           self.darmour = self.save ["divisionarmour"]
-           self.dAA = self.save ["divisionAA"]
-           self.drecon = self.save ["divisionrecon"]
-           self.dentrenchment = self.save ["divisionentrenchment"]
+      else:
+         self.dhp = self.save ["divisionhp"]
+         self.dattack = self.save ["divisionattack"]
+         self.dorg = self.save ["divisionorg"]
+         self.ddefense = self.save ["divisiondefense"]
+         self.dbreakthrough = self.save ["divisionbreakthrough"]
+         self.dpierce = self.save ["divisionpierce"]
+         self.darmour = self.save ["divisionarmour"]
+         self.dAA = self.save ["divisionAA"]
+         self.drecon = self.save ["divisionrecon"]
+         self.dentrenchment = self.save ["divisionentrenchment"]
 
    def damagedstats(self):
+      self.save = Json.loadjson (self.savepath)
       self.dattack , self.ddefense , self.dbreakthrough = combat.orgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
       self.save["divisionattack"] = self.dattack
       self.save["divisiondefense"] = self.ddefense
@@ -440,9 +514,7 @@ load = Load()
 building = Building()
 
 enemy.loadinitialstats()
-enemy.loadcurrentstats()
 combatdivision.loadinitialstats()
-combatdivision.loadcurrentstats()
 
 repeatmenu = 1
 menu = "0"
@@ -451,6 +523,8 @@ menu = "0"
 while repeatmenu == 1:
    if menu == "0":
       os.system('cls' if os.name == 'nt' else 'clear')
+      combatdivision.loadinitialstats()
+      enemy.loadinitialstats()
       print("main menu:")
       print("\n1 : build/upgrade structures      current money = ", load.money)
       print("2 : rescource interactions")
@@ -460,16 +534,16 @@ while repeatmenu == 1:
       print("\n\n/////////////////////------Battle Overview------/////////////////////")
       print(f"\nyou are on zone {enemy.zone}")
       print("\nyour division:                                  enemy division:")
-      print(f"  {combatdivision.hp} hp                                              {enemy.hp} hp")
-      print(f"  {combatdivision.org} org                                             {enemy.org} org")
-      print(f"  {combatdivision.attack} attack                                          {enemy.attack} attack")
-      print(f"  {combatdivision.defense} defense                                         {enemy.defense} defense")
-      print(f"  {combatdivision.breakthrough} breakthrough                                    {enemy.breakthrough} breakthrough")
-      print(f"  {combatdivision.pierce} pierce                                          {enemy.pierce} pierce")
-      print(f"  {combatdivision.armour} armour                                          {enemy.armour} armour")
-      print(f"  {combatdivision.AA} AA")
-      print(f"  {combatdivision.recon} recon")
-      print(f"  {combatdivision.entrenchment} entrenchment                                    {enemy.entrenchment} entrenchment")
+      print(f"  {combatdivision.dhp} hp                                              {enemy.hp} hp")
+      print(f"  {combatdivision.dorg} org                                             {enemy.org} org")
+      print(f"  {combatdivision.dattack} attack                                          {enemy.attack} attack")
+      print(f"  {combatdivision.ddefense} defense                                         {enemy.defense} defense")
+      print(f"  {combatdivision.dbreakthrough} breakthrough                                    {enemy.breakthrough} breakthrough")
+      print(f"  {combatdivision.dpierce} pierce                                          {enemy.pierce} pierce")
+      print(f"  {combatdivision.darmour} armour                                          {enemy.armour} armour")
+      print(f"  {combatdivision.dAA} AA")
+      print(f"  {combatdivision.drecon} recon")
+      print(f"  {combatdivision.dentrenchment} entrenchment                                    {enemy.entrenchment} entrenchment")
       menu = input ("\nselect menu: ")
       
    elif menu == "1":
@@ -477,7 +551,8 @@ while repeatmenu == 1:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("building interactions:")
         print("\n1 : buy building")
-        print("2 : return")
+        print("2 : upgrade buildings")
+        print("3 : return")
         submenu = input ("\nselect menu: ")
         if submenu == "1":
            while True:
@@ -496,7 +571,7 @@ while repeatmenu == 1:
                   print(f"copper foundry: {count["copper foundry"]} owned , {build["type"][5]["details"]["output"]["copper"]} copper/turn, uses {build["type"][5]["details"]["input"]["coal"]} coal and {build["type"][5]["details"]["input"]["raw copper"]} raw copper/turn,   {build["type"][5]["details"]["cost"]} cost")
              print(f"steel mill: {count["steel mill"]} owned , {build["type"][3]["details"]["output"]["steel"]} steel/turn, uses {build["type"][3]["details"]["input"]["coal"]} coal and {build["type"][3]["details"]["input"]["iron"]} iron/turn,   {build["type"][3]["details"]["cost"]} cost")
              if count["raremetalsunlock"] == 1:
-                print(f"rare metal foundry: {count["rare metal foundry"]} owned , {build["type"][6]["details"]["output"]["rare metals"]} rare metals/turn, uses {build["type"][6]["details"]["input"]["coal"]} coal {build["type"][6]["details"]["cost"]} cost")
+                print(f"rare metal foundry: {count["rare metal foundry"]} owned , {build["type"][6]["details"]["output"]["raremetals"]} rare metals/turn, uses {build["type"][6]["details"]["input"]["coal"]} coal {build["type"][6]["details"]["cost"]} cost")
              if count["oilunlock"] == 1:
                 print(f"pumpjack: {count["pumpjack"]} owned , {build["type"][7]["details"]["output"]["oil"]} oil/turn, uses {build["type"][7]["details"]["input"]["coal"]} coal,   {build["type"][7]["details"]["cost"]} cost")
              buy = input ("\npurchase ('exit' to leave): ")      
@@ -507,7 +582,59 @@ while repeatmenu == 1:
              else:
                 print("invalid building")
                 time.sleep(2)
+
         elif submenu == "2":
+            os.system('cls' if os.name == 'nt' else 'clear')
+            while True:
+              os.system('cls' if os.name == 'nt' else 'clear')
+              build = Json.loadjson ("./json/building.json")
+              save = Json.loadjson ("./json/save.json")
+              print(f"\ncurrent money: {load.money}\n")
+              print(f"coal mine  :  {save["coal mine upg cost"]}")
+              print(f"iron mine  :  {save["iron mine upg cost"]}")
+              if save ["copperunlock"] == 1:
+                 print(f"copper mine  :  {save["copper mine upg cost"]}")
+              print(f"\niron foundry  :  {save["iron foundry upg cost"]}")     
+              if save ["copperunlock"] == 1:
+                 print(f"copper foundry  :  {save["copper foundry upg cost"]}")                       
+              print(f"steel mill  :  {save["steel mill upg cost"]}")
+              if save ["raremetalsunlock"] == 1:
+                 print(f"rare metal foundry  :  {save["rare metals upg cost"]}")
+              if save ["oilunlock"] == 1:
+                 print(f"pumpjack  :  {save["pumpjack upg cost"]}")
+              buy = input("\nchoose which to upgrade ('upgrades double output, 5x cost for upgrade')  ")
+
+              if buy == "coal mine" or buy == "iron mine" or buy == "iron foundry" or buy == "steel mill" or buy == "copper mine" or buy == "copper foundry" or buy == "rare metal foundry" or buy == "pumpjack":
+                if buy == "coal mine" :
+                   change = "coal mine upg cost"
+                elif buy == "iron mine":
+                   change = "iron mine upg cost"
+                elif buy == "iron foundry":
+                   change = "iron foundry upg cost"
+                elif buy == "steel mill":
+                   change = "steel mill upg cost"
+                elif buy == "copper mine":
+                   change = "copper mine upg cost"
+                elif buy == "copper foundry":
+                   change = "copper foundry upg cost"
+                elif buy == "rare metal foundry":
+                   change = "rare metals upg cost"
+                elif buy == "pumpjack":
+                   change = "pumpjack upg cost"
+                
+                building.upgradebuilding(buy , change)
+
+              elif buy == "exit":
+                    break
+              else:
+                   print("invalid building")
+                   time.sleep(2)
+               
+
+           
+
+
+        elif submenu == "3":
             menu = "0"
             break
         
@@ -534,7 +661,7 @@ while repeatmenu == 1:
                sell = input ("\nsell ('exit' to leave): ")
                if sell == "exit":
                   break
-               elif sell == "iron" or sell == "steel" or sell == "copper": #or sell == blah blah blah
+               elif sell == "iron" or sell == "steel" or sell == "copper" or sell == "rare metals"  or sell == "oil": #or sell == blah blah blah
                   amount = input ("amount to sell: ")
                   building.sellrescource(sell, amount)
                else:
@@ -610,20 +737,17 @@ while repeatmenu == 1:
       savepath = Path ("./json/save.json")
       save =Json.loadjson (savepath)
       if save ["divisionmade"] ==  1:
-        combatdivision.loadcurrentstats()
-        enemy.loadcurrentstats()
-        combat.divfight(combatdivision.attack , combatdivision.breakthrough , combatdivision.pierce , combatdivision.recon , combatdivision.entrenchment , enemy.hp , enemy.org  , enemy.defense  , enemy.armour , enemy.entrenchment)
-        combat.enemyfight(enemy.attack , enemy.breakthrough , enemy.pierce  , enemy.entrenchment, combatdivision.hp ,combatdivision.org  , combatdivision.defense ,  combatdivision.armour, combatdivision.recon , combatdivision.entrenchment)
+        combat.divfight(combatdivision.dattack , combatdivision.dbreakthrough , combatdivision.dpierce , combatdivision.drecon , combatdivision.dentrenchment , enemy.hp , enemy.org  , enemy.defense  , enemy.armour , enemy.entrenchment)
+        combat.enemyfight(enemy.attack , enemy.breakthrough , enemy.pierce  , enemy.entrenchment, combatdivision.dhp ,combatdivision.dorg  , combatdivision.ddefense ,  combatdivision.darmour, combatdivision.drecon , combatdivision.dentrenchment)
         
-        combatdivision.loadcurrentstats()
-        enemy.loadcurrentstats()
         combatdivision.damagedstats()   #after combat happens, the new hp and org of both is saved and overwrites the old values , the new damage defense and breakthrough values based on org loss are found and then too overwrites these over the old values for those stats
         enemy.damagedstats()
-        combatdivision.loadcurrentstats()
-        enemy.loadcurrentstats()
-        time.sleep(3)
-        enemy.zoneupd
-        load.moneyupd
+      time.sleep(3)
+      enemy.zoneupd()
+      # Automatically load a new enemy if needed
+      save = Json.loadjson(Path("./json/save.json"))
+      if save.get("enemyjustmade", 0) == 1:
+         enemy.loadinitialstats()
         
       division.reload()
       division.divstat()

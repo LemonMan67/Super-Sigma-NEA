@@ -120,14 +120,27 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     return iron, rawiron, coal, steel
 
 def unlock():
-    data = Json.loadjson (Path ("./json/save.json"))
+    save = Json.loadjson (Path ("./json/save.json"))
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-    if data ["steel"] >= 10:
-        os.system('cls' if os.name == 'nt' else 'clear')
+    if save ["steel"] >= 10 and save ["copperunlock"] == 0:
         print("you have unlocked copper!!!")
         time.sleep(2)
-        data ["copperunlock"] = 1
-        Json.writejson (data, Path ("./json/save.json") , 2)
+        save ["copperunlock"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 5 and save ["oilunlock"] == 0:
+        print("you have unlocked oil!!! - this is used in fuelling vehicles - like AT and IFVs")
+        time.sleep(2)
+        save ["oilunlock"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 10 and save ["raremetalsunlock"]:
+        print("you have unlocked rare metals!!! - this is used in building advanced equipment like tanks and more modern equipment")
+        time.sleep(2)
+        save ["raremetalsunlock"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2) 
+    
 
 
 def divcreate(cost , steel , copper , raremetals , oil):

@@ -4,7 +4,7 @@
       "details": {
         "building": "coal mine",
         "output": {
-          "coal": 5
+          "coal": 80
         },
         "input": {
           "false": false
@@ -16,7 +16,7 @@
       "details": {
         "building": "iron mine",
         "output": {
-          "raw iron": 3
+          "raw iron": 96
         },
         "input": {
           "false": false
@@ -28,7 +28,7 @@
       "details": {
         "building": "iron foundry",
         "output": {
-          "iron": 1
+          "iron": 2
         },
         "input": {
           "coal": 1,
@@ -54,7 +54,7 @@
       "details": {
         "building": "copper mine",
         "output": {
-          "raw copper": 1
+          "raw copper": 2
         },
         "input": {
           "false": false
@@ -84,7 +84,7 @@
         "input": {
           "coal": 1
         },
-        "cost": 5000
+        "cost": 6500.0
       }
     },
     {
