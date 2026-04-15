@@ -30,6 +30,17 @@ def orgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   defense = orgmult * Idef
   breakthrough = orgmult * Ibreak
 
+  if attack < 0.1 * Iatt:
+    attack = 0.1 * Iatt
+  if defense < 0.1 * Idef:
+    defense = 0.1 * Idef
+  if breakthrough < 0.1 * Ibreak:
+    breakthrough = 0.1 * Ibreak
+
+  attack = math.trunc(attack)
+  defense = math.trunc(defense)
+  breakthrough = math.trunc(breakthrough)
+
   return attack , defense , breakthrough
 
 def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
@@ -40,6 +51,13 @@ def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   attack = orgmult * Iatt
   defense = orgmult * Idef
   breakthrough = orgmult * Ibreak
+
+  if attack < 0.1 * Iatt:
+    attack = 0.1 * Iatt
+  if defense < 0.1 * Idef:
+    defense = 0.1 * Idef
+  if breakthrough < 0.1 * Ibreak:
+    breakthrough = 0.1 * Ibreak
 
   return attack , defense , breakthrough
 
@@ -70,11 +88,14 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
     opporg = 0
 
   if opphp < 1:
+    zone = 0
+    money = 0
     save ["enemyjustmade"] = 1
     zone = save ["zone"]
     zone = zone + 1
     save ["zone"] = zone
     reward = 100 * (zone ** 1.1)
+    reward = math.trunc(reward)
     cuurentmoney = save["money"]
     money = cuurentmoney + reward
     save ["money"] = money
@@ -101,26 +122,26 @@ def enemyfight(attack , breakthrough , pierce ,  entrenchment , opphp , opporg ,
 
   if attack > 2 * oppdefense:  #if the enemy is low on defense for any reason - do 3x damage
     attack = attack * 3
+  if save["enemyjustmade"] == 0:
+    damage = attack / ((10 * oppdefense) * (1 / breakthrough))
+    damage = math.trunc(damage)
+    opphp = opphp - damage
 
-  damage = attack / ((10 * oppdefense) * (1 / breakthrough))
-  damage = math.trunc(damage)
-  opphp = opphp - damage
+    orgdamage = breakthrough / oppdefense 
+    orgdamage = math.trunc(orgdamage)
+    opporg = opporg - orgdamage
 
-  orgdamage = breakthrough / oppdefense 
-  orgdamage = math.trunc(orgdamage)
-  opporg = opporg - orgdamage
+    if opporg < 0:
+      opporg = 0
 
-  if opporg < 0:
-    opporg = 0
-
-  if opphp < 1:
-    save["divisionmade"] = 0
-    print ("our forces have been defeated!")
-  else:
-    print(f"they dealt {damage} damage to us and {orgdamage} org damage")
-    save ["divisionhp"] = opphp
-    save ["divisionorg"] = opporg
-  Json.writejson(save , savepath , 2)
+    if opphp < 1:
+      save["divisionmade"] = 0
+      print ("our forces have been defeated!")
+    else:
+      print(f"they dealt {damage} damage to us and {orgdamage} org damage")
+      save ["divisionhp"] = opphp
+      save ["divisionorg"] = opporg
+    Json.writejson(save , savepath , 2)
 
 
   

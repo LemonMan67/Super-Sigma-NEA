@@ -280,12 +280,17 @@ class Load:
       self.data = Json.loadjson (self.path)
       self.counter = self.data ["counter"]
       self.money = self.data ["money"]
+      self.zone = self.data ["zone"]
       self.rawiron = self.data ["raw iron"]
-      self.iron = self.data ["iron"]         #this does literally nothing
+      self.iron = self.data ["iron"]         
       self.coal = self.data ["coal"]
       self.ironmine = self.data ["iron mine"]
       self.ironfoundry = self.data ["iron foundry"]
       self.coalmine = self.data ["coal mine"]
+   
+   def moneyupd(self):
+     self.money = self.data ["money"]
+
 
 class Enemy:
    def __init__(self):
@@ -310,7 +315,7 @@ class Enemy:
       self.armour = int(0)
       self.entrenchment = int(0)
    
-   def loadcurrentstats (self):
+   def loadinitialstats (self):
       if self.save ["enemyjustmade"] == 1:
          self.hp = self.initialhp
          self.attack = self.initialattack
@@ -330,22 +335,27 @@ class Enemy:
          self.save ["enemyentrenchment"] = self.entrenchment
          self.save ["enemyjustmade"] = 0
          Json.writejson (self.save, self.savepath , 2)
-      else:
-         self.hp = self.save ["enemyhp"]
-         self.attack = self.save ["enemyattack"]
-         self.org = self.save ["enemyorg"]
-         self.defense = self.save ["enemydefense"]
-         self.breakthrough = self.save ["enemybreakthrough"]
-         self.pierce = self.save ["enemypierce"]
-         self.armour = self.save ["enemyarmour"]
-         self.entrenchment = self.save ["enemyentrenchment"]
+
+   def loadcurrentstats(self):
+         if self.save ["enemyjustmade"] == 0:
+           self.hp = self.save ["enemyhp"]
+           self.attack = self.save ["enemyattack"]
+           self.org = self.save ["enemyorg"]
+           self.defense = self.save ["enemydefense"]
+           self.breakthrough = self.save ["enemybreakthrough"]
+           self.pierce = self.save ["enemypierce"]
+           self.armour = self.save ["enemyarmour"]
+           self.entrenchment = self.save ["enemyentrenchment"]
 
    def damagedstats(self):
       self.attack , self.defense , self.breakthrough = combat.enemyorgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
       self.save["enemyattack"] = self.attack
       self.save["enemydefense"] = self.defense
       self.save["enemybreakthrough"] = self.breakthrough
-      Json.writejson(self.save , self.savepath)
+      Json.writejson(self.save , self.savepath , 2)
+
+   def zoneupd(self):
+      self.zone = self.save ["zone"]
 
 class Combatdivision(Division):
    def __init__(self):
@@ -375,8 +385,9 @@ class Combatdivision(Division):
       self.drecon = int(0)
       self.dentrenchment = int(0)
    
-   def loadcurrentstats (self):
+   def loadinitialstats (self):
       if self.save ["divisionjustmade"] == 1:
+         self.divstat()
          self.dhp = self.initialhp
          self.dattack = self.initialattack
          self.dorg = self.initialorg
@@ -399,17 +410,19 @@ class Combatdivision(Division):
          self.save ["divisionentrenchment"] = self.dentrenchment
          self.save ["divisionjustmade"] = 0
          Json.writejson (self.save, self.savepath , 2)
-      else:
-         self.dhp = self.save ["divisionhp"]
-         self.dattack = self.save ["divisionattack"]
-         self.dorg = self.save ["divisionorg"]
-         self.ddefense = self.save ["divisiondefense"]
-         self.dbreakthrough = self.save ["divisionbreakthrough"]
-         self.dpierce = self.save ["divisionpierce"]
-         self.darmour = self.save ["divisionarmour"]
-         self.dAA = self.save ["divisionAA"]
-         self.drecon = self.save ["divisionrecon"]
-         self.dentrenchment = self.save ["divisionentrenchment"]
+
+   def loadcurrentstats(self):
+         if self.save ["divisionjustmade"] == 0:
+           self.dhp = self.save ["divisionhp"]
+           self.dattack = self.save ["divisionattack"]
+           self.dorg = self.save ["divisionorg"]
+           self.ddefense = self.save ["divisiondefense"]
+           self.dbreakthrough = self.save ["divisionbreakthrough"]
+           self.dpierce = self.save ["divisionpierce"]
+           self.darmour = self.save ["divisionarmour"]
+           self.dAA = self.save ["divisionAA"]
+           self.drecon = self.save ["divisionrecon"]
+           self.dentrenchment = self.save ["divisionentrenchment"]
 
    def damagedstats(self):
       self.dattack , self.ddefense , self.dbreakthrough = combat.orgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
@@ -426,9 +439,10 @@ enemy = Enemy()
 load = Load()
 building = Building()
 
-division.divstat()
-combatdivision.loadcurrentstats()
+enemy.loadinitialstats()
 enemy.loadcurrentstats()
+combatdivision.loadinitialstats()
+combatdivision.loadcurrentstats()
 
 repeatmenu = 1
 menu = "0"
@@ -596,30 +610,24 @@ while repeatmenu == 1:
       savepath = Path ("./json/save.json")
       save =Json.loadjson (savepath)
       if save ["divisionmade"] ==  1:
-        combatdivision.loadcurrentstats
-        enemy.loadcurrentstats
+        combatdivision.loadcurrentstats()
+        enemy.loadcurrentstats()
         combat.divfight(combatdivision.attack , combatdivision.breakthrough , combatdivision.pierce , combatdivision.recon , combatdivision.entrenchment , enemy.hp , enemy.org  , enemy.defense  , enemy.armour , enemy.entrenchment)
         combat.enemyfight(enemy.attack , enemy.breakthrough , enemy.pierce  , enemy.entrenchment, combatdivision.hp ,combatdivision.org  , combatdivision.defense ,  combatdivision.armour, combatdivision.recon , combatdivision.entrenchment)
-
-        combatdivision.loadcurrentstats
-        enemy.loadcurrentstats
-        combatdivision.damagedstats   #after combat happens, the new hp and org of both is saved and overwrites the old values , the new damage defense and breakthrough values based on org loss are found and then too overwrites these over the old values for those stats
-        enemy.damagedstats
-        combatdivision.loadcurrentstats
-        enemy.loadcurrentstats
+        
+        combatdivision.loadcurrentstats()
+        enemy.loadcurrentstats()
+        combatdivision.damagedstats()   #after combat happens, the new hp and org of both is saved and overwrites the old values , the new damage defense and breakthrough values based on org loss are found and then too overwrites these over the old values for those stats
+        enemy.damagedstats()
+        combatdivision.loadcurrentstats()
+        enemy.loadcurrentstats()
         time.sleep(3)
-
+        enemy.zoneupd
+        load.moneyupd
+        
       division.reload()
       division.divstat()
       endturn.divcreate(division.cost , division.steel , division.copper , division.rare , division.oil)
-
-      if save ["enemyjustmade"] == 1:
-         save ["enemyjustmade"] = 0 
-         Json.writejson(save , savepath , 2)
-
-
-
-
 
 
       menu = "0"  
