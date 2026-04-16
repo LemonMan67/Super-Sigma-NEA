@@ -107,7 +107,7 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
     raremetalschange = raremetals - raremetalsstart
 
 
-    print(f"coal change: {coalchange}")
+    print(f"\ncoal change: {coalchange}")
     print(f"raw iron change: {rawironchange}")
     print(f"iron change: {ironchange}")
     print(f"raw copper change: {rawcopperchange}")

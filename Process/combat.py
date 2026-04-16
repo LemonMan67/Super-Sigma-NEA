@@ -111,7 +111,7 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
     zone = save ["zone"]
     zone = zone + 1
     save ["zone"] = zone
-    reward = 100 * (zone ** 1.1)
+    reward = 200 * (zone ** 1.15)
     reward = math.trunc(reward)
     cuurentmoney = save["money"]
     money = cuurentmoney + reward

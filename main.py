@@ -447,21 +447,23 @@ class Building:
    
    def sellrescource (self , rescourcename , amount ):
       if rescourcename == "iron": #differnt prices for different rescources can be added here
-         sellprice = 2
+         sellprice = 10
       elif rescourcename == "steel":
-         sellprice = 5
-      elif rescourcename == "copper":
-         sellprice = 3
-      elif rescourcename == "rare metals" :
-         sellprice = 15
-      elif rescourcename == "oil":
          sellprice = 25
+      elif rescourcename == "copper":
+         sellprice = 15
+      elif rescourcename == "rare metals" :
+         sellprice = 50
+      elif rescourcename == "oil":
+         sellprice = 100
       else:
          sellprice = 0
       amount = int (amount)
+      print(amount)
+      print(self.save[rescourcename])
       while True:   
+        self.save = Json.loadjson (self.savepath)
         if amount <= self.save [rescourcename]: 
-           self.save = Json.loadjson (self.savepath)
            self.save["money"] += (sellprice * amount)
            self.money = self.save["money"]
            self.save [rescourcename] -= amount
@@ -671,13 +673,15 @@ while repeatmenu == 1:
       os.system('cls' if os.name == 'nt' else 'clear')
       combatdivision.loadinitialstats()
       enemy.loadinitialstats()
+      load.reload()
       rescource = Json.loadjson(Path("./json/save.json"))
       print("////////////////////////------main menu------////////////////////////")
-      print("\n1 : build/upgrade structures      current money = ", load.money)
+      print(f"\n1 : build/upgrade structures      current money = {rescource["money"]}")
       print(f"2 : rescource interactions        coal = {rescource["coal"]} , raw iron = {rescource["raw iron"]} , raw copper = {rescource["raw copper"]} , oil = {rescource["oil"]}")
       print(f"3:  division designer             iron = {rescource["iron"]} , copper = {rescource["copper"]} , steel = {rescource["steel"]} , rare metals = {rescource["rare metals"]}")
       print("4 : end turn                      current turn = ", load.counter) 
-      print("5 : exit")
+      print("5 : tutorial")
+      print("6 : exit")
       print("\n\n/////////////////////------Battle Overview------/////////////////////")
       print(f"\nyou are on zone {enemy.zone}")
       print("\nyour division:                                  enemy division:")
@@ -776,10 +780,6 @@ while repeatmenu == 1:
               else:
                    print("invalid building")
                    time.sleep(2)
-               
-
-           
-
 
         elif submenu == "3":
             menu = "0"
@@ -796,21 +796,26 @@ while repeatmenu == 1:
             while True:
                os.system('cls' if os.name == 'nt' else 'clear')
                count = Json.loadjson ("./json/save.json")
-               print(f"current money: {load.money}\n")
-               print(f"iron: {count['iron']} owned")
+               print(f"current money: {count["money"]}\n")
+               print(f"iron: {count['iron']} owned  - for 10 money")
                if count["copperunlock"] == 1:
-                 print(f"copper: {count['copper']} owned")
-               print(f"steel: {count['steel']} owned")
+                 print(f"copper: {count['copper']} owned  - for 15 money")
+               print(f"steel: {count['steel']} owned  - for 25 money")
                if count["raremetalsunlock"] == 1:
-                 print(f"rare metals: {count['rare metals']} owned")
+                 print(f"rare metals: {count['rare metals']} owned  - for 50 money")
                if count["oilunlock"] == 1:
-                 print(f"oil: {count['oil']} owned")
+                 print(f"oil: {count['oil']} owned  - for 100 money")
                sell = input ("\nsell ('exit' to leave): ")
                if sell == "exit":
                   break
                elif sell == "iron" or sell == "steel" or sell == "copper" or sell == "rare metals"  or sell == "oil": #or sell == blah blah blah
                   amount = input ("amount to sell: ")
-                  building.sellrescource(sell, amount)
+                  x = amount.isnumeric()
+                  if x == True:
+                    building.sellrescource(sell, amount)
+                  else:
+                     print("input a number")
+                     time.sleep(2)
                else:
                   print("invalid rescource")
                   time.sleep(2)
@@ -900,7 +905,7 @@ while repeatmenu == 1:
                if save ["ATmodern"] == 1 and save ["ATera"] == "CW":
                   print(f"upgrade AT to modern {save["ATmodernp"]} cost")
 
-               unit = input("\n choose which to upgrade , exit to leave")
+               unit = input("\n choose which to upgrade , exit to leave : ")
 
                if unit == "exit":
                   break
@@ -939,11 +944,37 @@ while repeatmenu == 1:
       division.reload()
       division.divstat()
       endturn.divcreate(division.cost , division.steel , division.copper , division.rare , division.oil)
-
-
+      load.reload()
       menu = "0"  
 
    elif menu == "5":
+      while True:
+         os.system('cls' if os.name == 'nt' else 'clear')
+         print("you start with 100 money , 1 iron mine, coal mine and iron foundry")
+         print("you can use money to buy buildings to make rescources, to upgrade your units and to upgrade buildings - unit upgrades appear at zone 15")
+         print("iron ore and copper ore are used to make iron and copper  -  coal and iron makes steel  -  steel, oil , copper and rare metals make your division")
+         print("coal is also used to power buildings")
+         print("rescources can also be sold for money")
+         print("\nyou start with a weak divsision which can fight the enemy")
+         print("victory move you forwards a zone and progress earns money and unlocks unit upgrades")
+         print("the division designer is used to edit the division that you send to fight - stronger divisions are more expensive - keep that in mind")
+         print("you will always attack before the enemy - sending waves of men and steel will eventually let you win")
+         print("more attack, breakthrough and (armour) piercing = more damage dealt - more defense and armour = less damage taken")
+         print("entrenchment gives a 1% bonus to attack and defense - recon reduces the effectiveness of entrenchment (the enemies dont have that one :face_holding_back_tears:)")
+         print("you deal a little amount of hp damage and org damage to the enemy - but reducing an enemies organisation will reduce their attack , defense and breakthrough")
+         print("AA actually stands for A(wesome)A(s hell) - not anti air! any reference to anti air is a mistranslation and it was never ever originally planned for the game")
+         print("\nall menus that require typing are case sensitive and whatever")
+         print("when a message saying your division has died - your division wont seem dead in the menu - but no combat turns will happen until a division is made again")
+         print("if you want to return from a menu and no way is specified just type exit and it should work")
+
+         choice = input("leave gng")
+         if choice == "exit":
+            break
+         else:
+            print("read the last bit")
+
+
+   elif menu == "6":
       print("exiting and saving...")
       # add save function here???
       time.sleep(3)

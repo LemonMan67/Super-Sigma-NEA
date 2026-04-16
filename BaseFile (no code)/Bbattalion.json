@@ -160,7 +160,7 @@
         "AA" : 0 , 
         "recon" : 1,
         "entrenchment" : 2,
-        "amount" : 1000
+        "amount" : 400
         }
       }
     ]
@@ -216,7 +216,7 @@
         "AA" : 0 , 
         "recon" : 0,
         "entrenchment" : 0,
-        "amount" : 100
+        "amount" : 50
         }
       }
     ]
