@@ -149,6 +149,152 @@ class Division:
                   print ("amount / unit made - amount of units/battalion is in statcheck")
          counter += 1
 
+      def upgrade(self , unit):
+         self.save = Json.loadjson (self.savepath)
+         if unit == "infantry" and self.save ["Infera"] == "WW2":
+            cost = self.save["infCWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["Infera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)               
+
+         elif unit == "infantry" and self.save ["Infera"] == "CW":
+            cost = self.save["infmodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["Infera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "tank" and self.save ["tankera"] == "WW2":
+            cost = self.save["tankCWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["tankera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "tank" and self.save ["tankera"] == "CW":
+            cost = self.save["tankmodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["tankera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "IFV" and self.save ["IFVera"] == "WW2":
+            cost = self.save["IFVCWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["IFVera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "IFV" and self.save ["IFVera"] == "CW":
+            cost = self.save["IFVmodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["IFVera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "artillery" and self.save ["artera"] == "WW2":
+            cost = self.save["artilleryCWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["artera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "artillery" and self.save ["artera"] == "CW":
+            cost = self.save["artillerymodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["artera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "AA" and self.save ["AAera"] == "WW2":
+            cost = self.save["AACWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["AAera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "AA" and self.save ["AAera"] == "CW":
+            cost = self.save["AAmodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["AAera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "AT" and self.save ["ATera"] == "WW2":
+            cost = self.save["ATCWp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["ATera"] = "CW"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)
+
+         elif unit == "AT" and self.save ["ATera"] == "CW":
+            cost = self.save["AAmodernp"] 
+            money = self.save["money"]
+            if money <= cost:
+               print("not enough money had to upgrade your unit")
+            else:
+               money = money - cost
+               save["money"] = money
+               save["AAera"] = "modern"
+               print("unit upgraded!")
+               Json.writejson (self.save, self.savepath , 2)         
+
 class Building:
    def __init__(self , filepath = "./json/building.json"):
       self.path = Path (filepath)
@@ -525,7 +671,7 @@ while repeatmenu == 1:
       os.system('cls' if os.name == 'nt' else 'clear')
       combatdivision.loadinitialstats()
       enemy.loadinitialstats()
-      print("main menu:")
+      print("////////////////////////------main menu------////////////////////////")
       print("\n1 : build/upgrade structures      current money = ", load.money)
       print("2 : rescource interactions")
       print("3:  division designer")
@@ -688,9 +834,10 @@ while repeatmenu == 1:
          print("\n1 : edit template")
          print("2 : view stats (shows stats for all battalions of a given stat)")
          print("3 : view costs (shows costs for all battalions)")
-         print("4 : return")
+         print("4 : upgrade division")
+         print("5 : return")
          submenu = input ("\nselect menu: ")
-         if submenu == "4":
+         if submenu == "5":
             menu = "0"
             break
          if submenu == "1":
@@ -722,6 +869,16 @@ while repeatmenu == 1:
                division.costcheck()
                exit = input("type anything to return: ")
                break
+         
+         if submenu == "4":
+            while True:
+               os.system('cls' if os.name == 'nt' else 'clear')
+               save = Json.loadjson ("./json/save.json")
+               if save ["infCW"] == 1 and save ["Infera"] == "WW2":
+                  print(f"upgrade infantry to CW" {save["infCWp"]} cost)
+               if save ["infmodern"] == 1 and save ["Infera"] == "CW":
+                  print(f"upgrade infantry to modern" {save["infmodernp"]} cost) # repeat this a bit
+
    
       menu = "0"
 
