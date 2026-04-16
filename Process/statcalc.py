@@ -3,11 +3,14 @@ from . import Json
 Bpath = Json.loadjson (Json.Path ("./json/battalion.json"))
 BCpath = Json.loadjson (Json.Path ("./json/battalioncost.json"))
 
+#a very similar thing happens in all functions here with minor changes depending on the stat calculated
+
+
 def hp(divlist, tankera, IFVera, Infera, artera, AAera, ATera):    #hp is a total of all units 
     hp = 0
     era = 0
     for x in divlist:
-        if x == "Ta":
+        if x == "Ta":                #sorts through divlist to see what battalions are present in the division
             unit = "tank"
         elif x == "IV":
             unit = "IFV"
@@ -22,13 +25,13 @@ def hp(divlist, tankera, IFVera, Infera, artera, AAera, ATera):    #hp is a tota
         else:
             unit = ""
         if unit == "tank":
-            if tankera == "WW2":
-                era = 2
+            if tankera == "WW2":        #depending on the era of each specified unit - 0 , 1 or 2 is returned - this is the list index of the respective era in the battalion.json file
+                era = 2                 #modern comes first so is always the 0th index etc etc
             elif tankera == "CW":
                 era = 1
             elif tankera == "Modern":
                 era = 0
-            hp += Bpath["battalion"] [0] ["list"] [era] ["era"] ["hp"]
+            hp += Bpath["battalion"] [0] ["list"] [era] ["era"] ["hp"]    #adds the hp for that battalion to a total 
         elif unit == "IFV":
             if IFVera == "WW2":
                 era = 2

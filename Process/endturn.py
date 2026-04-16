@@ -119,13 +119,13 @@ def rescource (iron, rawiron, coal, ironmine, ironfoundry, coalmine):
 
     return iron, rawiron, coal, steel
 
-def unlock():
+def unlock():     #checks if a condition is met and if that unlock hasnt been done before - if the condition is met and the unlock hasnt happend before - the thing is unlocked and a message is displayed
     save = Json.loadjson (Path ("./json/save.json"))
     os.system('cls' if os.name == 'nt' else 'clear')
 
     if save ["steel"] >= 10 and save ["copperunlock"] == 0:
         print("you have unlocked copper!!!")
-        time.sleep(2)
+        time.sleep(2)                                                 #rescources are unlocked here 
         save ["copperunlock"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2)
 
@@ -145,7 +145,7 @@ def unlock():
 
     if save ["zone"] >= 15 and save ["infCW"] == 0:
         print("you can upgrade your infantry to the cold war era now!")
-        time.sleep(2)
+        time.sleep(2)                                                             #CW upgrades are unlocked here 
         save ["CW"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2) 
     
@@ -182,7 +182,7 @@ def unlock():
 
 
     if save ["zone"] >= 25 and save ["infmodern"] == 0:
-        print("infantry can be upgraded to the modern era now")
+        print("infantry can be upgraded to the modern era now")         #moddern upgrades unlocked here 
         time.sleep(2)
         save ["infmodern"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2)
@@ -221,41 +221,41 @@ def unlock():
 def divcreate(cost , steel , copper , raremetals , oil):
     os.system('cls' if os.name == 'nt' else 'clear')
     data = Json.loadjson (Path ("./json/save.json"))
-    if data ["divisionmade"] == 0:
+    if data ["divisionmade"] == 0:   #loads the save file to see if the division is dead 
       
-      div = 0
+      div = 0 #a counter
       moneyhad = data ["money"]
       steelhad = data ["steel"]
-      copperhad = data ["copper"]     #save file rescources
+      copperhad = data ["copper"]     #save file rescources are loaded
       raremetalshad = data ["rare metals"]
       oilhad = data ["oil"]
   
       if moneyhad >= cost:
-          div = div + 1
+          div = div + 1  #a counter increases for each successful check
       else:
-          print("not enough money to create division")
+          print("\nnot enough money to create division")
     
       if steelhad >= steel:
           div += 1
       else:
-          print("not enough steel to create division")
+          print("\nnot enough steel to create division")
     
       if copperhad >= copper:
           div += 1
       else:
-          print("not enough copper to create division")
+          print("\nnot enough copper to create division")
   
       if raremetalshad >= raremetals:
           div += 1
       else:
-          print("not enough rare metals to create division")
+          print("\nnot enough rare metals to create division")
    
       if oilhad >= oil:
           div += 1
       else:
-          print("not enough oil to create division")
+          print("\nnot enough oil to create division")
     
-      if div == 5:
+      if div == 5:    #if all 5 checks pass - i have enough material and money to make the division!
           print("division created")
           data ["money"] = moneyhad - cost
           data ["steel"] = steelhad - steel
@@ -265,7 +265,7 @@ def divcreate(cost , steel , copper , raremetals , oil):
           data ["divisionmade"] = 1 #sets the division to be alive - when this is 0 , it allows for a new division to be made 
           data ["divisionjustmade"] = 1   #setting this to one allows for the stats of a new division to be loaded into the division object - it is set to 0 then
           Json.writejson (data, Path ("./json/save.json") , 2)
-      time.sleep(5)
+      time.sleep(3)
     
 
 

@@ -106,16 +106,16 @@ class Division:
       def eracheck(self , era):
          if era == "WW2":
             return 2
-         elif era == "CW":
+         elif era == "CW":   #this does nothing
             return 1
          elif era == "modern":
             return 0
 
       def statcheck(self):
          counter = 0
-         batlist = [self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera]
-         for x in self.bat["battalion"]:
-
+         batlist = [self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera] #both stat and costcheck use a list containt each battalion types era 
+         for x in self.bat["battalion"]:                                                         #it will then present the user the stats of that battalion for that era 
+                                                                                                 #if i have a WW2 tank and Cw infantry, the program shows the stats for a WW2 tank and a CW infantry
             print (f" Unit:  {x['unit']}")
             for y in x ["list"]:
                 if batlist[counter] == y["era"]["type"]:
@@ -123,8 +123,8 @@ class Division:
                   print (f"  has { y["era"]["hp"]} hp")
                   print (f"  has { y["era"]["org"]} org")
                   print (f"  has { y["era"]["attack"]} attack")
-                  print (f"  has { y["era"]["defense"]} defense")
-                  print (f"  has { y["era"]["breakthrough"]} breakthrough")
+                  print (f"  has { y["era"]["defense"]} defense")           #prints every single stat for every battalion based on what era it is upgraded to
+                  print (f"  has { y["era"]["breakthrough"]} breakthrough") #the stats are stored in battalion.json , the era each unit is levelled to is stored in save file
                   print (f"  has { y["era"]["pierce"]} pierce")
                   print (f"  has { y["era"]["armour"]} armour")
                   print (f"  has { y["era"]["AA"]} AA")
@@ -140,9 +140,9 @@ class Division:
             print (f" Unit:  {x['unit']}")
             for y in x ["list"]:
                 if batlist[counter] == y["era"]["type"]:
-                  print (f"  is from the {y['era']['type']} era")
-                  print (f"  costs { y["era"]["cost"]} money")
-                  print (f"  costs { y["era"]["steel"]} steel")
+                  print (f"  is from the {y['era']['type']} era")             #costs saved in battalioncost.json
+                  print (f"  costs { y["era"]["cost"]} money")                #similar to above function - but will print the costs for 1 thing in the battalion 
+                  print (f"  costs { y["era"]["steel"]} steel")               #gives price of 1 tank - a battalion will need 80
                   print (f"  costs { y["era"]["copper"]} copper")
                   print (f"  costs { y["era"]["rare metals"]} rare metals")
                   print (f"  costs { y["era"]["oil"]} oil\n")
@@ -151,23 +151,25 @@ class Division:
 
       def upgrade(self , unit):
          self.save = Json.loadjson (self.savepath)
-         if unit == "infantry" and self.save ["Infera"] == "WW2":
-            cost = self.save["infCWp"] 
+         if unit == "infantry" and self.save ["Infera"] == "WW2":    #checks what unit is being upgraded and its current era to reflect what upgrade will be bought , doing this allows the user to type e.g infantry to both upgrade to CW and modern
+            cost = self.save["infCWp"] #infcwp = infantry CW price - a constant value stored in the save file for the upgrade cost from WW2 to CW    
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
-               save["Infera"] = "CW"
+               save["Infera"] = "CW"     #infera = "infantry era" refers to what era the unit is - stored in the save file
                print("unit upgraded!")
                Json.writejson (self.save, self.savepath , 2)               
 
          elif unit == "infantry" and self.save ["Infera"] == "CW":
-            cost = self.save["infmodernp"] 
+            cost = self.save["infmodernp"]  #infmodernprice - price stored to upgrade from CW to modern
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -180,6 +182,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -192,6 +195,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -204,6 +208,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -216,6 +221,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -228,6 +234,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -240,6 +247,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -252,6 +260,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -264,6 +273,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -276,6 +286,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -288,6 +299,7 @@ class Division:
             money = self.save["money"]
             if money <= cost:
                print("not enough money had to upgrade your unit")
+               time.sleep(2)
             else:
                money = money - cost
                save["money"] = money
@@ -307,19 +319,19 @@ class Building:
       if buildingname != "iron mine" or buildingname != "iron foundry" or buildingname != "coal mine" or buildingname != "steel mill" or buildingname != "copper mine" or buildingname != "copper foundry":
        for x in self.data ["type"]:
           if x ["details"]["building"] == buildingname :
-             if self.money >=  int ( x ["details"]["cost"]):
+             if self.money >=  int ( x ["details"]["cost"]):     #checks player can afford building Y
                self.money -= int ( x ["details"]["cost"])
                load.money = self.money
-               amount = self.save [buildingname]
+               amount = self.save [buildingname]   #increases amount of the building Y by one
                amount += 1        
                self.save [buildingname] = amount
-               self.save ["money"] = self.money
+               self.save ["money"] = self.money  #updates money value based on building cost
                Json.writejson (self.save, self.savepath , 2)
                if buildingname == "iron mine":        
                      self.save["iron mine"] += 1
                      cost = self.data["type"][1]["details"]["cost"]
                      cost = int(cost)
-                     cost = cost * 1.3
+                     cost = cost * 1.3            #this bit essentially increases the cost of each specific building by 1.3x everytime its bought
                      cost = round(cost,1)
                      self.data["type"][1]["details"]["cost"] = cost
                      Json.writejson (self.data, self.path , 2)
@@ -388,20 +400,20 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
 
    def upgradebuilding(self , buildingname , change):  # pretend building name is what is being channged
-         if self.money >=  int ( save[change]):
+         if self.money >=  int ( save[change]):   #checks the user has enough money for the upgrade
                self.money -= int ( save[change])
                load.money = self.money
-               self.save ["money"] = self.money
+               self.save ["money"] = self.money   #overwrites money in the save file
                if buildingname == "iron mine":        
-                     self.save["iron mine upg cost"] = self.save["iron mine upg cost"] * 5
-                     self.data["type"][1]["details"]["output"]["raw iron"] = self.data["type"][1]["details"]["output"]["raw iron"] * 2
-                     Json.writejson (self.data, self.path , 2)
-                     Json.writejson (self.save, self.savepath , 2)
+                     self.save["iron mine upg cost"] = self.save["iron mine upg cost"] * 5    #increases cost of upgrade by 5*
+                     self.data["type"][1]["details"]["output"]["raw iron"] = self.data["type"][1]["details"]["output"]["raw iron"] * 2  #doubles output of that building in the building.json file
+                     Json.writejson (self.data, self.path , 2)  #saves new output to building.json
+                     Json.writejson (self.save, self.savepath , 2)  #saves upgrade cost to save file
 
                elif buildingname == "iron foundry":         
                      self.save["iron foundry upg cost"] = self.save["iron foundry upg cost"] * 5
-                     self.data["type"][2]["details"]["output"]["iron"] = self.data["type"][2]["details"]["output"]["iron"] * 2
-                     Json.writejson (self.data, self.path , 2)
+                     self.data["type"][2]["details"]["output"]["iron"] = self.data["type"][2]["details"]["output"]["iron"] * 2  #the input integer is specific to the exact building called
+                     Json.writejson (self.data, self.path , 2)                                                                  #the integer is the list position of the specific building in the "type" part of the json file
                      Json.writejson (self.save, self.savepath , 2)
                
                elif buildingname == "copper mine":
@@ -459,15 +471,13 @@ class Building:
       else:
          sellprice = 0
       amount = int (amount)
-      print(amount)
-      print(self.save[rescourcename])
       while True:   
         self.save = Json.loadjson (self.savepath)
-        if amount <= self.save [rescourcename]: 
-           self.save["money"] += (sellprice * amount)
-           self.money = self.save["money"]
-           self.save [rescourcename] -= amount
-           Json.writejson (self.save, self.savepath , 2)
+        if amount <= self.save [rescourcename]: #checks if the user has enough of a rescource to actually sell the amount they want to, 
+           self.save["money"] += (sellprice * amount) #adds the money selling x of the rescouce would give to the save files money value 
+           self.money = self.save["money"]  
+           self.save [rescourcename] -= amount       #reduces the amount of rescource Y in the save file
+           Json.writejson (self.save, self.savepath , 2) #overwrites save file with new values
            load.money = self.money
         else:
              print("you dont have that much to sell")
@@ -512,7 +522,7 @@ class Enemy:
       self.zone = self.save ["zone"]
       self.initialhp = enemycalc.hp(self.zone)
       self.initialattack = enemycalc.attack(self.zone)
-      self.initialorg = enemycalc.org(self.zone)
+      self.initialorg = enemycalc.org(self.zone)         #enemy stats arent calculated with a division template - but rather a set of formula that find a value by substituting the zone value
       self.initialdefense = enemycalc.defense(self.zone)
       self.initialbreakthrough = enemycalc.breakthrough(self.zone)
       self.initialpierce = enemycalc.pierce(self.zone)
@@ -618,7 +628,7 @@ class Combatdivision(Division):
          self.dbreakthrough = self.initialbreakthrough
          self.dpierce = self.initialpierce
          self.darmour = self.initialarmour
-         self.dAA = self.initialAA
+         self.dAA = self.initialAA          #if a division has just been made at the end of last turn - the new divisions initial stats are calculated from the division templates stats - and then these values are updated to the save file
          self.drecon = self.initialrecon
          self.dentrenchment = self.initialentrenchment
          self.save ["divisionhp"] = self.dhp
@@ -637,8 +647,8 @@ class Combatdivision(Division):
          self.dhp = self.save ["divisionhp"]
          self.dattack = self.save ["divisionattack"]
          self.dorg = self.save ["divisionorg"]
-         self.ddefense = self.save ["divisiondefense"]
-         self.dbreakthrough = self.save ["divisionbreakthrough"]
+         self.ddefense = self.save ["divisiondefense"]     #if a division wasnt just made , the stats used in calculations are loaded from the save file
+         self.dbreakthrough = self.save ["divisionbreakthrough"]    #once the division is damaged - many stats change
          self.dpierce = self.save ["divisionpierce"]
          self.darmour = self.save ["divisionarmour"]
          self.dAA = self.save ["divisionAA"]
@@ -649,8 +659,8 @@ class Combatdivision(Division):
       self.save = Json.loadjson (self.savepath)
       self.dattack , self.ddefense , self.dbreakthrough = combat.orgstatchange(self.initialattack , self.initialdefense , self.initialbreakthrough , self.initialorg)
       self.save["divisionattack"] = self.dattack
-      self.save["divisiondefense"] = self.ddefense
-      self.save["divisionbreakthrough"] = self.dbreakthrough
+      self.save["divisiondefense"] = self.ddefense    #when a division has its organisation damaged - its attack defense and breakthrough are lowered
+      self.save["divisionbreakthrough"] = self.dbreakthrough   #they are then saved to the save file - they will be called as the new stat values for the division at the start of the next turn
       Json.writejson(self.save , self.savepath , 2)
       
 
@@ -667,10 +677,11 @@ combatdivision.loadinitialstats()
 repeatmenu = 1
 menu = "0"
 #main menu loop - where the player selects what to do
-
+#works by using a while loop and an if elif statement - when the menu loop is run through it prints whichever menu corresponds with the menu variable number
+#when returning from any menu to the main menu - menu is set to 0 then the while loop re runs , as menu == 0, the main menu is displayed
 while repeatmenu == 1:
    if menu == "0":
-      os.system('cls' if os.name == 'nt' else 'clear')
+      os.system('cls' if os.name == 'nt' else 'clear')  #this line clears the console - arguably the most important feature of the entire program
       combatdivision.loadinitialstats()
       enemy.loadinitialstats()
       load.reload()
@@ -950,7 +961,7 @@ while repeatmenu == 1:
    elif menu == "5":
       while True:
          os.system('cls' if os.name == 'nt' else 'clear')
-         print("you start with 100 money , 1 iron mine, coal mine and iron foundry")
+         print("you start with 1000 money , 1 iron mine, coal mine and iron foundry")
          print("you can use money to buy buildings to make rescources, to upgrade your units and to upgrade buildings - unit upgrades appear at zone 15")
          print("iron ore and copper ore are used to make iron and copper  -  coal and iron makes steel  -  steel, oil , copper and rare metals make your division")
          print("coal is also used to power buildings")
@@ -967,11 +978,13 @@ while repeatmenu == 1:
          print("when a message saying your division has died - your division wont seem dead in the menu - but no combat turns will happen until a division is made again")
          print("if you want to return from a menu and no way is specified just type exit and it should work")
 
-         choice = input("leave gng")
+         choice = input("\nleave gng : ")
          if choice == "exit":
+            menu = "0"
             break
          else:
             print("read the last bit")
+
 
 
    elif menu == "6":

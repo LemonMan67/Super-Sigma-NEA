@@ -13,7 +13,7 @@ def combatdef(defense, entrenchment, recon):
     entrenchment = entrenchment / 5*recon
   defense = defense * (entrenchment / 100)
   return defense
-
+                                                 #increases attack and defense by 1% for each entrenchment - if the player has high recon - the enemy will suffer a reduction in entrenchment bonus
 def combatatt(attack, entrenchment, recon):
   if recon > 4:
     entrenchment = entrenchment / 5*recon
@@ -27,12 +27,12 @@ def orgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   Corg = save["divisionorg"]  #current org
   orgmult = (Corg / Iorg) ** 2
 
-  attack = orgmult * Iatt
-  defense = orgmult * Idef
+  attack = orgmult * Iatt 
+  defense = orgmult * Idef                    #reduces stats based on org damage taken
   breakthrough = orgmult * Ibreak
-
+                                                     
   if attack < 0.1 * Iatt:
-    attack = 0.1 * Iatt
+    attack = 0.1 * Iatt                    #doesnt let them fall below 10% of original/initial stats
   if defense < 0.1 * Idef:
     defense = 0.1 * Idef
   if breakthrough < 0.1 * Ibreak:
@@ -48,7 +48,7 @@ def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
 
   save = Json.loadjson (savepath)
 
-  Corg = save["enemyorg"]  #current org
+  Corg = save["enemyorg"]  #current org for enemey
   orgmult = (Corg / Iorg) ** 2
 
   attack = orgmult * Iatt
@@ -56,7 +56,7 @@ def enemyorgstatchange (Iatt , Idef , Ibreak , Iorg): #initialattack etc
   breakthrough = orgmult * Ibreak
 
   if attack < 0.1 * Iatt:
-    attack = 0.1 * Iatt
+    attack = 0.1 * Iatt                   #does the function above but for the enemy instead
   if defense < 0.1 * Idef:
     defense = 0.1 * Idef
   if breakthrough < 0.1 * Ibreak:
@@ -85,7 +85,7 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
   if attack > 2 * oppdefense:  #if the enemy is low on defense for any reason - do 3x damage
     attack = attack * 3
 
-  damage = attack / ((10 * oppdefense) * (1 / breakthrough))
+  damage = attack / ((10 * oppdefense) * (1 / breakthrough))   #finds damage dealt 
   damage = math.trunc(damage)
   opphp = opphp - damage
 
@@ -104,14 +104,14 @@ def divfight (attack , breakthrough , pierce , recon , entrenchment , opphp , op
       opphp = opphp - (damage + (orgdamage / 3))
       opphp = math.trunc(opphp)
 
-  if opphp < 1:
+  if opphp < 1:    # if the enemies health falls below 1 - they die
     zone = 0
     money = 0
-    save ["enemyjustmade"] = 1
+    save ["enemyjustmade"] = 1   #makes it so a new enemy will be calculated with a new zone number at the start of next turn
     zone = save ["zone"]
-    zone = zone + 1
+    zone = zone + 1    #increase zone by 1
     save ["zone"] = zone
-    reward = 200 * (zone ** 1.15)
+    reward = 200 * (zone ** 1.15)    #gives money for the players triumph
     reward = math.trunc(reward)
     cuurentmoney = save["money"]
     money = cuurentmoney + reward

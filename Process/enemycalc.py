@@ -1,5 +1,9 @@
 import math
 
+#tbh i dont know what these do really - i just threw numbers together to make the stats go up
+#anything with logs is made to basically cap out at some point
+#attack defesne and breakthrough get VERY high with large zone numbers
+
 def hp(zone):
       zone = zone * 2
       hp = 10 * math.log(zone , 1.2)
@@ -56,7 +60,7 @@ def breakthrough (zone):
 
 def pierce (zone):
     zone = zone * 1.5
-    pierce = 10 * math.log(zone , 1.67)
+    pierce = 10 * math.log(zone , 1.67) #67!!!
     pierce = math.trunc(pierce)
 
     return pierce
