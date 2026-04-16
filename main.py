@@ -671,10 +671,11 @@ while repeatmenu == 1:
       os.system('cls' if os.name == 'nt' else 'clear')
       combatdivision.loadinitialstats()
       enemy.loadinitialstats()
+      rescource = Json.loadjson(Path("./json/save.json"))
       print("////////////////////////------main menu------////////////////////////")
       print("\n1 : build/upgrade structures      current money = ", load.money)
-      print("2 : rescource interactions")
-      print("3:  division designer")
+      print(f"2 : rescource interactions        coal = {rescource["coal"]} , raw iron = {rescource["raw iron"]} , raw copper = {rescource["raw copper"]} , oil = {rescource["oil"]}")
+      print(f"3:  division designer             iron = {rescource["iron"]} , copper = {rescource["copper"]} , steel = {rescource["steel"]} , rare metals = {rescource["rare metals"]}")
       print("4 : end turn                      current turn = ", load.counter) 
       print("5 : exit")
       print("\n\n/////////////////////------Battle Overview------/////////////////////")
@@ -703,8 +704,8 @@ while repeatmenu == 1:
         if submenu == "1":
            while True:
              os.system('cls' if os.name == 'nt' else 'clear')
-             build = Json.loadjson ("./json/building.json")
-             count = Json.loadjson ("./json/save.json")
+             build = Json.loadjson(Path("./json/building.json"))
+             count = Json.loadjson(Path("./json/save.json"))
              #these lines state a building, amount owned, production rate and needs - only prints buildings like copper mines if unlocked
              #this couldve been much easier on the eyes if i understood OOP better at the time - i am NOT changing it 
              print(f"current money: {load.money}\n")
@@ -733,8 +734,8 @@ while repeatmenu == 1:
             os.system('cls' if os.name == 'nt' else 'clear')
             while True:
               os.system('cls' if os.name == 'nt' else 'clear')
-              build = Json.loadjson ("./json/building.json")
-              save = Json.loadjson ("./json/save.json")
+              build = Json.loadjson (Path("./json/building.json"))
+              save = Json.loadjson (Path("./json/save.json"))
               print(f"\ncurrent money: {load.money}\n")
               print(f"coal mine  :  {save["coal mine upg cost"]}")
               print(f"iron mine  :  {save["iron mine upg cost"]}")
@@ -875,11 +876,40 @@ while repeatmenu == 1:
                os.system('cls' if os.name == 'nt' else 'clear')
                save = Json.loadjson ("./json/save.json")
                if save ["infCW"] == 1 and save ["Infera"] == "WW2":
-                  print(f"upgrade infantry to CW" {save["infCWp"]} cost)
+                  print(f"upgrade infantry to CW {save["infCWp"]} cost")
                if save ["infmodern"] == 1 and save ["Infera"] == "CW":
-                  print(f"upgrade infantry to modern" {save["infmodernp"]} cost) # repeat this a bit
+                  print(f"upgrade infantry to modern {save["infmodernp"]} cost") # repeat this a bit
+               if save ["IFVCW"] == 1 and save ["IFVera"] == "WW2":
+                  print(f"upgrade IFV to CW {save["IFVCWp"]} cost")
+               if save ["IFVmodern"] == 1 and save ["IFVera"] == "CW":
+                  print(f"upgrade IFV to modern {save["IVFmodernp"]} cost")
+               if save ["tankCW"] == 1 and save ["tankera"] == "WW2":
+                  print(f"upgrade tank to CW {save["tankCWp"]} cost")
+               if save ["tankmodern"] == 1 and save ["tankera"] == "CW":
+                  print(f"upgrade tank to modern {save["tankmodernp"]} cost")
+               if save ["artilleryCW"] == 1 and save ["artera"] == "WW2":
+                  print(f"upgrade artillery to CW {save["artilleryCWp"]} cost")
+               if save ["artillerymodern"] == 1 and save ["artera"] == "CW":
+                  print(f"upgrade artillery to modern {save["artillerymodernp"]} cost")
+               if save ["AACW"] == 1 and save ["AAera"] == "WW2":
+                  print(f"upgrade AA to CW {save["AACWp"]} cost")
+               if save ["AAmodern"] == 1 and save ["AAera"] == "CW":
+                  print(f"upgrade AA to modern {save["AAmodernp"]} cost")
+               if save ["ATCW"] == 1 and save ["ATera"] == "WW2":
+                  print(f"upgrade AT to CW {save["ATCWp"]} cost")
+               if save ["ATmodern"] == 1 and save ["ATera"] == "CW":
+                  print(f"upgrade AT to modern {save["ATmodernp"]} cost")
 
-   
+               unit = input("\n choose which to upgrade , exit to leave")
+
+               if unit == "exit":
+                  break
+               elif unit == "infantry" or unit == "IFV" or unit == "tank" or unit == "artillery" or unit == "AA" or unit == "AT":
+                  division.upgrade(unit)
+               else:
+                  print("invalid unit")
+                  time.sleep(2)
+
       menu = "0"
 
             

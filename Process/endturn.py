@@ -135,12 +135,87 @@ def unlock():
         save ["oilunlock"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2)
 
-    if save ["zone"] >= 10 and save ["raremetalsunlock"]:
+    if save ["zone"] >= 10 and save ["raremetalsunlock"] == 0:
         print("you have unlocked rare metals!!! - this is used in building advanced equipment like tanks and more modern equipment")
         time.sleep(2)
         save ["raremetalsunlock"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2) 
+
+
+
+    if save ["zone"] >= 15 and save ["infCW"] == 0:
+        print("you can upgrade your infantry to the cold war era now!")
+        time.sleep(2)
+        save ["CW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2) 
     
+    if save ["zone"] >= 16 and save ["artilleryCW"] == 0:
+        print("you can upgrade your artillery to the cold war era now!")
+        time.sleep(2)
+        save ["artilleryCW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 17 and save ["AACW"] == 0:
+        print("AA can be upgraded to CW era now")
+        time.sleep(2)
+        save ["AACW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 18 and save ["IFVCW"] == 0:
+        print("IFV can be upgraded to the CW now")
+        time.sleep(2)
+        save ["IFVCW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 19 and save ["ATCW"] == 0:
+        print("AT can be upgraded to the CW era now!")
+        time.sleep(2)
+        save ["ATCW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 20 and save ["tankCW"] == 0:
+        print("tanks can be upgraded to the CW now")
+        time.sleep(2)
+        save ["tankCW"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+
+
+    if save ["zone"] >= 25 and save ["infmodern"] == 0:
+        print("infantry can be upgraded to the modern era now")
+        time.sleep(2)
+        save ["infmodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 27 and save ["artillerymodern"] == 0:
+        print("artillery can be upgraded to modern now!")
+        time.sleep(2)
+        save ["artillerymodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 29 and save ["AAmodern"] == 0:
+        print("AA can be made modern now")
+        time.sleep(2)
+        save ["AAmodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 31 and save ["IFVmodern"] == 0:
+        print("IFVs can be made modern")
+        time.sleep(2)
+        save ["IFVmodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 33 and save ["ATmodern"] == 0:
+        print("AT can be made modern")
+        time.sleep(2)
+        save ["ATmodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
+
+    if save ["zone"] >= 35 and save ["tankmodern"] == 0:
+        print("tanks can be upgraded to the modern era now!")
+        time.sleep(2)
+        save ["tankmodern"] = 1
+        Json.writejson (save, Path ("./json/save.json") , 2)
 
 
 def divcreate(cost , steel , copper , raremetals , oil):
