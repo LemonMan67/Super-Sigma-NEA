@@ -313,7 +313,7 @@ class Building:
       self.data = Json.loadjson (self.path)
       self.savepath = Path ("./json/save.json")
       self.save = Json.loadjson (self.savepath)
-      self.money = load.money
+      self.money = self.save["money"]
 
    def buybuilding (self , buildingname ) :
       if buildingname != "iron mine" or buildingname != "iron foundry" or buildingname != "coal mine" or buildingname != "steel mill" or buildingname != "copper mine" or buildingname != "copper foundry":
@@ -400,8 +400,10 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
 
    def upgradebuilding(self , buildingname , change):  # pretend building name is what is being channged
-         if self.money >=  int ( save[change]):   #checks the user has enough money for the upgrade
-               self.money -= int ( save[change])
+         self.save = Json.loadjson (self.savepath)
+         self.money = self.save["money"]
+         if self.money >=  int ( self.save[change]):   #checks the user has enough money for the upgrade
+               self.money -= int ( self.save[change])
                load.money = self.money
                self.save ["money"] = self.money   #overwrites money in the save file
                if buildingname == "iron mine":        
@@ -751,6 +753,7 @@ while repeatmenu == 1:
               os.system('cls' if os.name == 'nt' else 'clear')
               build = Json.loadjson (Path("./json/building.json"))
               save = Json.loadjson (Path("./json/save.json"))
+              load.moneyupd()
               print(f"\ncurrent money: {load.money}\n")
               print(f"coal mine  :  {save["coal mine upg cost"]}")
               print(f"iron mine  :  {save["iron mine upg cost"]}")
