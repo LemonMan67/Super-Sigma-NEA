@@ -745,8 +745,7 @@ while repeatmenu == 1:
               os.system('cls' if os.name == 'nt' else 'clear')
               build = Json.loadjson (Path("./json/building.json"))
               save = Json.loadjson (Path("./json/save.json"))
-              load.moneyupd()
-              print(f"\ncurrent money: {load.money}\n")
+              print(f"\ncurrent money: {save["money"]}\n")
               print(f"coal mine  :  {save["coal mine upg cost"]}")
               print(f"iron mine  :  {save["iron mine upg cost"]}")
               if save ["copperunlock"] == 1:
