@@ -328,7 +328,6 @@ class Building:
                self.save ["money"] = self.money  #updates money value based on building cost
                Json.writejson (self.save, self.savepath , 2)
                if buildingname == "iron mine":        
-                     self.save["iron mine"] += 1
                      cost = self.data["type"][1]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3            #this bit essentially increases the cost of each specific building by 1.3x everytime its bought
@@ -337,7 +336,6 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
 
                elif buildingname == "iron foundry":         
-                      self.save["iron foundry"] += 1
                       cost = self.data["type"][2]["details"]["cost"]
                       cost = int(cost)
                       cost = cost * 1.3
@@ -346,7 +344,6 @@ class Building:
                       Json.writejson (self.data, self.path , 2)
                
                elif buildingname == "copper mine":
-                     self.save["copper mine"] += 1
                      cost = self.data["type"][4]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3
@@ -355,7 +352,6 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
                
                elif buildingname == "copper foundry":
-                     self.save["copper foundry"] += 1
                      cost = self.data["type"][5]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3
@@ -364,7 +360,6 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
 
                elif buildingname == "coal mine":
-                      self.save["coal mine"] += 1
                       cost = self.data["type"][0]["details"]["cost"]
                       cost = int(cost)
                       cost = cost * 1.3
@@ -373,7 +368,6 @@ class Building:
                       Json.writejson (self.data, self.path , 2)
 
                elif buildingname == "steel mill":
-                     self.save["steel mill"] += 1
                      cost = self.data["type"][3]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3
@@ -382,7 +376,6 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
                
                elif buildingname == "rare metal foundry":
-                     self.save["rare metal foundry"] += 1
                      cost = self.data["type"][6]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3
@@ -391,7 +384,6 @@ class Building:
                      Json.writejson (self.data, self.path , 2)
 
                elif buildingname == "pumpjack":
-                     self.save["pumpjack"] += 1
                      cost = self.data["type"][7]["details"]["cost"]
                      cost = int(cost)
                      cost = cost * 1.3
