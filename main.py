@@ -614,6 +614,16 @@ class Combatdivision(Division):
    def loadinitialstats (self):
       self.save = Json.loadjson (self.savepath)
       if self.save ["divisionjustmade"] == 1:
+         self.initialhp = self.hp
+         self.initialattack = self.attack
+         self.initialorg = self.org
+         self.initialdefense = self.defense
+         self.initialbreakthrough = self.breakthrough
+         self.initialpierce = self.pierce
+         self.initialarmour = self.armour
+         self.initialAA = self.AA
+         self.initialrecon = self.recon
+         self.initialentrenchment = self.entrenchment
          self.divstat()
          self.dhp = self.initialhp
          self.dattack = self.initialattack
@@ -684,7 +694,7 @@ while repeatmenu == 1:
       print(f"\n1 : build/upgrade structures      current money = {rescource["money"]}")
       print(f"2 : rescource interactions        coal = {rescource["coal"]} , raw iron = {rescource["raw iron"]} , raw copper = {rescource["raw copper"]} , oil = {rescource["oil"]}")
       print(f"3:  division designer             iron = {rescource["iron"]} , copper = {rescource["copper"]} , steel = {rescource["steel"]} , rare metals = {rescource["rare metals"]}")
-      print("4 : end turn                      current turn = ", load.counter) 
+      print("4 : end turn                      current turn = ", rescource["counter"]) 
       print("5 : tutorial")
       print("6 : exit")
       print("\n\n/////////////////////------Battle Overview------/////////////////////")
@@ -717,7 +727,7 @@ while repeatmenu == 1:
              count = Json.loadjson(Path("./json/save.json"))
              #these lines state a building, amount owned, production rate and needs - only prints buildings like copper mines if unlocked
              #this couldve been much easier on the eyes if i understood OOP better at the time - i am NOT changing it 
-             print(f"current money: {load.money}\n")
+             print(f"current money: {count["money"]}\n")
              print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    
              print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/turn,   {build["type"][1]["details"]["cost"]} cost")
              if count["copperunlock"] == 1:
@@ -817,7 +827,11 @@ while repeatmenu == 1:
                   amount = input ("amount to sell: ")
                   x = amount.isnumeric()
                   if x == True:
-                    building.sellrescource(sell, amount)
+                    if amount >= 0: 
+                        building.sellrescource(sell, amount)
+                    else:
+                        print("enter a number above 0")
+                        time.sleep(2)
                   else:
                      print("input a number")
                      time.sleep(2)
@@ -845,7 +859,7 @@ while repeatmenu == 1:
          print("\n1 : edit template")
          print("2 : view stats (shows stats for all battalions of a given stat)")
          print("3 : view costs (shows costs for all battalions)")
-         print("4 : upgrade division")
+         print("4 : upgrade battalions")
          print("5 : return")
          submenu = input ("\nselect menu: ")
          if submenu == "5":

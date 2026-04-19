@@ -95,7 +95,7 @@
       "era" :{
         "type" : "WW2",
         "hp" : 30,
-        "org" : 20,
+        "org" : 40,
         "attack" : 30,
         "defense" : 50,
         "breakthrough" : 30,
