@@ -317,7 +317,8 @@ class Building:
 
    def buybuilding (self , buildingname ) :
       if buildingname != "iron mine" or buildingname != "iron foundry" or buildingname != "coal mine" or buildingname != "steel mill" or buildingname != "copper mine" or buildingname != "copper foundry":
-       for x in self.data ["type"]:
+        self.save = Json.loadjson (self.savepath)
+        for x in self.data ["type"]:
           if x ["details"]["building"] == buildingname :
              if self.money >=  int ( x ["details"]["cost"]):     #checks player can afford building Y
                self.money -= int ( x ["details"]["cost"])
@@ -824,7 +825,7 @@ while repeatmenu == 1:
                if sell == "exit":
                   break
                elif sell == "iron" or sell == "steel" or sell == "copper" or sell == "rare metals"  or sell == "oil": #or sell == blah blah blah
-                  amount = input ("amount to sell: ")
+                  amount = int(input ("amount to sell: "))
                   x = amount.isnumeric()
                   if x == True:
                     if amount >= 0: 
