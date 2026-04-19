@@ -146,7 +146,7 @@ def unlock():     #checks if a condition is met and if that unlock hasnt been do
     if save ["zone"] >= 15 and save ["infCW"] == 0:
         print("you can upgrade your infantry to the cold war era now!")
         time.sleep(2)                                                             #CW upgrades are unlocked here 
-        save ["CW"] = 1
+        save ["infCW"] = 1
         Json.writejson (save, Path ("./json/save.json") , 2) 
     
     if save ["zone"] >= 16 and save ["artilleryCW"] == 0:

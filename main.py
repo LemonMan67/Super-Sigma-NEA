@@ -112,6 +112,8 @@ class Division:
             return 0
 
       def statcheck(self):
+         self.save = Json.loadjson (self.savepath)
+         self.bat = Json.loadjson (self.battalionpath)
          counter = 0
          batlist = [self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera] #both stat and costcheck use a list containt each battalion types era 
          for x in self.bat["battalion"]:                                                         #it will then present the user the stats of that battalion for that era 
@@ -134,6 +136,8 @@ class Division:
             counter += 1
 
       def costcheck(self):
+         self.save = Json.loadjson (self.savepath)
+         self.bat = Json.loadjson (self.battalionpath)
          counter = 0
          batlist = [self.tankera, self.IFVera, self.Infera, self.artera, self.AAera, self.ATera]
          for x in self.batc["battalion"]:
@@ -162,7 +166,8 @@ class Division:
                save["money"] = money
                save["Infera"] = "CW"     #infera = "infantry era" refers to what era the unit is - stored in the save file
                print("unit upgraded!")
-               Json.writejson (self.save, self.savepath , 2)               
+               Json.writejson (self.save, self.savepath , 2)     
+               time.sleep(2)          
 
          elif unit == "infantry" and self.save ["Infera"] == "CW":
             cost = self.save["infmodernp"]  #infmodernprice - price stored to upgrade from CW to modern
@@ -419,7 +424,7 @@ class Building:
                
                elif buildingname == "copper foundry":
                      self.save["copper foundry upg cost"] = self.save["copper foundry upg cost"] * 5
-                     self.data["type"][5]["details"]["output"]["rawiron"] = self.data["type"][5]["details"]["output"]["rawiron"] * 2
+                     self.data["type"][5]["details"]["output"]["copper"] = self.data["type"][5]["details"]["output"]["copper"] * 2
                      Json.writejson (self.data, self.path , 2)
                      Json.writejson (self.save, self.savepath , 2)
 
@@ -732,7 +737,7 @@ while repeatmenu == 1:
              print(f"coal mine:  {count["coal mine"]} owned , {build["type"][0]["details"]["output"]["coal"]} coal/turn,   {build["type"][0]["details"]["cost"]} cost")    
              print(f"iron mine: {count["iron mine"]} owned , {build["type"][1]["details"]["output"]["raw iron"]} raw iron/turn,   {build["type"][1]["details"]["cost"]} cost")
              if count["copperunlock"] == 1:
-                print(f"copper mine: {count["copper mine"]} owned , {build["type"][4]["details"]["output"]["raw copper"]} copper/turn,   {build["type"][4]["details"]["cost"]} cost")
+                print(f"copper mine: {count["copper mine"]} owned , {build["type"][4]["details"]["output"]["raw copper"]} raw copper/turn,   {build["type"][4]["details"]["cost"]} cost")
              print(f"iron foundry: {count["iron foundry"]} owned , {build["type"][2]["details"]["output"]["iron"]} iron/turn, uses {build["type"][2]["details"]["input"]["coal"]} coal and {build["type"][2]["details"]["input"]["raw iron"]} raw iron/turn,   {build["type"][2]["details"]["cost"]} cost")
              if count["copperunlock"] == 1:
                   print(f"copper foundry: {count["copper foundry"]} owned , {build["type"][5]["details"]["output"]["copper"]} copper/turn, uses {build["type"][5]["details"]["input"]["coal"]} coal and {build["type"][5]["details"]["input"]["raw copper"]} raw copper/turn,   {build["type"][5]["details"]["cost"]} cost")
@@ -825,9 +830,10 @@ while repeatmenu == 1:
                if sell == "exit":
                   break
                elif sell == "iron" or sell == "steel" or sell == "copper" or sell == "rare metals"  or sell == "oil": #or sell == blah blah blah
-                  amount = int(input ("amount to sell: "))
+                  amount = input ("amount to sell: ")
                   x = amount.isnumeric()
                   if x == True:
+                    amount = int(amount)
                     if amount >= 0: 
                         building.sellrescource(sell, amount)
                     else:
@@ -944,7 +950,6 @@ while repeatmenu == 1:
       load.counter = endturn.buh(load.counter)
       endturn.rescource (load.iron, load.rawiron, load.coal, load.ironmine, load.ironfoundry, load.coalmine)
       time.sleep(3)
-      endturn.unlock()
 
       savepath = Path ("./json/save.json")
       save =Json.loadjson (savepath)
@@ -956,6 +961,7 @@ while repeatmenu == 1:
         enemy.damagedstats()
       time.sleep(3)
       enemy.zoneupd()
+      endturn.unlock()
       # Automatically load a new enemy if needed
       save = Json.loadjson(Path("./json/save.json"))
       if save.get("enemyjustmade", 0) == 1:

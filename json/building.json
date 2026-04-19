@@ -4,7 +4,7 @@
       "details": {
         "building": "coal mine",
         "output": {
-          "coal": 5
+          "coal": 10
         },
         "input": {
           "false": false
@@ -16,12 +16,12 @@
       "details": {
         "building": "iron mine",
         "output": {
-          "raw iron": 3
+          "raw iron": 6
         },
         "input": {
           "false": false
         },
-        "cost": 91.0
+        "cost": 16.9
       }
     },
     {
@@ -34,14 +34,14 @@
           "coal": 1,
           "raw iron": 1
         },
-        "cost": 54.6
+        "cost": 26.0
       }
     },
     {
       "details": {
         "building": "steel mill",
         "output": {
-          "steel": 1
+          "steel": 4
         },
         "input": {
           "coal": 2,
@@ -54,25 +54,25 @@
       "details": {
         "building": "copper mine",
         "output": {
-          "raw copper": 1
+          "raw copper": 4
         },
         "input": {
           "false": false
         },
-        "cost": 328.9
+        "cost": 150
       }
     },
     {
       "details": {
         "building": "copper foundry",
         "output": {
-          "copper": 1
+          "copper": 2
         },
         "input": {
           "coal": 1,
           "raw copper": 1
         },
-        "cost": 300
+        "cost": 507.0
       }
     },
     {
@@ -84,19 +84,19 @@
         "input": {
           "coal": 1
         },
-        "cost": 6500.0
+        "cost": 2000
       }
     },
     {
       "details": {
         "building": "pumpjack",
         "output": {
-          "oil": 2
+          "oil": 4
         },
         "input": {
           "coal": 10
         },
-        "cost": 1000
+        "cost": 6500.0
       }
     }
   ]
